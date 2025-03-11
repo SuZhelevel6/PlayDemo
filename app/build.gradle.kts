@@ -18,6 +18,11 @@ android {
         vectorDrawables {
             useSupportLibrary = true
         }
+
+        ndk {
+            // 根据需要添加必要的ABI
+            abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
+        }
     }
 
     buildTypes {
@@ -58,6 +63,10 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
+    //日志框架
+    //https://github.com/JakeWharton/timber
+    implementation ("com.jakewharton.timber:timber:5.0.1")
+
     //UI框架
     //https://qmuiteam.com/android/get-started
     implementation ("com.qmuiteam:qmui:2.1.0")
@@ -65,4 +74,8 @@ dependencies {
     //腾讯开源的高性能keyValue存储，用来替代系统的SharedPreferences
     //https://github.com/Tencent/MMKV
     implementation ("com.tencent:mmkv-static:1.2.16")
+
+    //爱奇艺开源的在android平台上面捕获异常的开源库
+    //https://github.com/iqiyi/xCrash
+    implementation("com.iqiyi.xcrash:xcrash-android-lib:3.1.0")
 }
