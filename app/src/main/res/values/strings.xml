@@ -1,3 +1,6 @@
 <resources>
     <string name="app_name">PlayDemo</string>
+    <string name="loading">loading</string>
+    <string name="error_load">loading_error</string>
+    <string name="error_network_not_connect">error network not connected</string>
 </resources>

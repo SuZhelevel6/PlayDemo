@@ -13,7 +13,7 @@ import xcrash.XCrash
 /**
  * 全局Application
  */
-class PlayDemoApplication : Application() {
+class AppContext : Application() {
 
     private val applicationScope = CoroutineScope(Dispatchers.IO)
 
@@ -30,7 +30,7 @@ class PlayDemoApplication : Application() {
 
     override fun onCreate() {
         super.onCreate()
-
+        instance = this
         initTimber()
         initMMKV()
         processCrashLogs()
@@ -84,7 +84,7 @@ class PlayDemoApplication : Application() {
         /**
          * 这里是为了以后能方便的调用 PlayDemoApplication 里面的一些方法，如 initOCR() 等
          */
-        lateinit var instance: PlayDemoApplication
+        lateinit var instance: AppContext
     }
 
 }

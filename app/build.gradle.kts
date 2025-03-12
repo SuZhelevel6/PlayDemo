@@ -40,6 +40,7 @@ android {
     }
     buildFeatures {
         compose = false
+        viewBinding = true
     }
     composeOptions {
         kotlinCompilerExtensionVersion = "1.5.1"
@@ -59,6 +60,7 @@ dependencies {
     implementation("androidx.appcompat:appcompat:1.4.1") // AppCompat 库: 对新版本 Android 特性的向后兼容支持
     implementation("com.google.android.material:material:1.12.0")
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
+    implementation("androidx.databinding:viewbinding:8.9.0")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -78,4 +80,14 @@ dependencies {
     //爱奇艺开源的在android平台上面捕获异常的开源库
     //https://github.com/iqiyi/xCrash
     implementation("com.iqiyi.xcrash:xcrash-android-lib:3.1.0")
+
+    //apache common lang3工具包
+    //提供了StringUtils等这样的类
+    //http://commons.apache.org/proper/commons-lang/
+    implementation ("org.apache.commons:commons-lang3:3.8")
+
+    //android常用工具类
+    //https://github.com/Blankj/AndroidUtilCode
+    //https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
+    implementation ("com.blankj:utilcodex:1.31.1")
 }
