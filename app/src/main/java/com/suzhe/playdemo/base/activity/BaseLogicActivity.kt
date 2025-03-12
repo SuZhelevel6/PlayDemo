@@ -1,6 +1,7 @@
 package com.suzhe.playdemo.base.activity
 
 import android.net.http.HttpException
+import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.suzhe.playdemo.AppContext
@@ -10,7 +11,6 @@ import com.suzhe.playdemo.ext.longToast
 import com.suzhe.playdemo.ext.shortToast
 import com.suzhe.playdemo.utils.SuperDarkUtil
 import org.apache.commons.lang3.StringUtils
-import timber.log.Timber
 import java.lang.ref.WeakReference
 
 /**
@@ -138,7 +138,7 @@ open class BaseLogicActivity : BaseCommonActivity() {
      * 显示加载对话框
      */
     open fun showLoading(data: String = getString(R.string.loading)) {
-        Timber.d("showLoading: " + data)
+        LogUtils.d("showLoading: " + data)
 
     }
 

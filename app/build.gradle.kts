@@ -65,10 +65,6 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
 
-    //日志框架
-    //https://github.com/JakeWharton/timber
-    implementation ("com.jakewharton.timber:timber:5.0.1")
-
     //UI框架
     //https://qmuiteam.com/android/get-started
     implementation ("com.qmuiteam:qmui:2.1.0")

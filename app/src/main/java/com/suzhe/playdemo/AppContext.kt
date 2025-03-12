@@ -4,9 +4,10 @@ import android.app.Application
 import android.content.ContentValues
 import android.content.Context
 import android.provider.MediaStore
+import com.blankj.utilcode.util.AppUtils
+import com.blankj.utilcode.util.LogUtils
 import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.*
-import timber.log.Timber
 import xcrash.TombstoneManager
 import xcrash.XCrash
 
@@ -31,7 +32,8 @@ class AppContext : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        initTimber()
+        // 初始化LogUtils
+        LogUtils.getConfig().setGlobalTag(AppUtils.getAppPackageName())
         initMMKV()
         processCrashLogs()
     }
@@ -41,10 +43,6 @@ class AppContext : Application() {
         applicationScope.cancel() // 应用终止时取消协程作用域
     }
     //endregion
-
-    private fun initTimber() {
-        Timber.plant(Timber.DebugTree())
-    }
 
     //region 处理应用崩溃日志
     private fun processCrashLogs() {
@@ -60,7 +58,7 @@ class AppContext : Application() {
                     contentResolver.openOutputStream(uri)?.use { out ->
                         file.inputStream().use { ins ->
                             ins.copyTo(out) // 复制崩溃日志文件内容
-                            Timber.i("Copy file to $out")
+                            LogUtils.d("Copy file to $out")
                         }
                     }
                     file.delete() // 删除原始日志文件
@@ -77,7 +75,7 @@ class AppContext : Application() {
      */
     private fun initMMKV() {
         val rootDir = MMKV.initialize(this)
-        Timber.d("initMMKV %s", rootDir)
+        LogUtils.d("initMMKV %s", rootDir)
     }
 
     companion object {
