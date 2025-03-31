@@ -4,7 +4,7 @@ import android.view.LayoutInflater
 import java.lang.reflect.ParameterizedType
 
 /**
- * 反射工具类
+ * 反射工具类，用在了BaseViewModelActivity 的封装中
  */
 object ReflectUtil {
     /**

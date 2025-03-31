@@ -3,4 +3,6 @@
     <string name="loading">loading</string>
     <string name="error_load">loading_error</string>
     <string name="error_network_not_connect">error network not connected</string>
+    <!--版权文本-->
+    <string name="copyright" translatable="false">Copyright © %1$d SuZhe. All Rights Reserved</string>
 </resources>
