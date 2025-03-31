@@ -1,8 +1,8 @@
 package com.suzhe.playdemo.component.splash
 
 import android.Manifest
+import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
-import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.suzhe.playdemo.R
@@ -15,8 +15,6 @@ import java.util.*
 class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
 
     private val requiredPermissions = arrayOf(
-        Manifest.permission.CAMERA,
-        Manifest.permission.RECORD_AUDIO,
         Manifest.permission.ACCESS_COARSE_LOCATION,
         Manifest.permission.ACCESS_FINE_LOCATION,
         Manifest.permission.READ_PHONE_STATE,
@@ -31,7 +29,7 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
         // 处理权限请求的结果
         var allGranted = true
         permissions.entries.forEach { entry ->
-            LogUtils.d("Permission", "Permission ${entry.key} is ${if (entry.value) "granted" else "denied"}")
+            Log.d("Permission", "Permission ${entry.key} is ${if (entry.value) "granted" else "denied"}")
             if (!entry.value) {
                 allGranted = false
             }
@@ -39,8 +37,9 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
 
         if (allGranted) {
             // 所有权限都被授予
-
-            finish()
+            binding.root.postDelayed({
+                prepareNext()
+            }, 1000)
         } else {
             // 至少有一个权限被拒绝
             ToastUtils.make().show("Permissions not granted by the user.")
@@ -81,10 +80,15 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
     }
 
     private fun showTermsServiceAgreementDialog() {
-//        TermServiceDialogFragment.show(supportFragmentManager) {
-//            PreferenceUtil.setAcceptTermsServiceAgreement()
+        TermServiceDialogFragment.show(supportFragmentManager) {
+            PreferenceUtil.setAcceptTermsServiceAgreement()
             requestPermission()
-//        }
+        }
+    }
+
+
+    private fun prepareNext() {
+
     }
 
 }
