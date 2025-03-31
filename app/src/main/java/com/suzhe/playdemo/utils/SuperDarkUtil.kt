@@ -4,7 +4,7 @@ import android.content.Context
 import android.content.res.Configuration
 
 /**
- * 深色模型工具类
+ * 深色模型工具类，用在BaseLogicActivity中动态改变状态栏文字白色
  */
 object SuperDarkUtil {
     /**
