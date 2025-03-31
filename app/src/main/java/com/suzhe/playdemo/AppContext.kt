@@ -6,6 +6,7 @@ import android.content.Context
 import android.provider.MediaStore
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
+import com.google.android.material.color.DynamicColors
 import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.*
 import xcrash.TombstoneManager
@@ -36,6 +37,8 @@ class AppContext : Application() {
         LogUtils.getConfig().setGlobalTag(AppUtils.getAppPackageName())
         initMMKV()
         processCrashLogs()
+        // 开启动态主题
+        DynamicColors.applyToActivitiesIfAvailable(instance);
     }
 
     override fun onTerminate() {
