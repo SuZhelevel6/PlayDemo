@@ -3,8 +3,10 @@ package com.suzhe.playdemo.component.splash
 import android.Manifest
 import android.util.Log
 import androidx.activity.result.contract.ActivityResultContracts
+import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
+import com.suzhe.playdemo.component.main.MainActivity
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
 import com.suzhe.playdemo.databinding.ActivitySplashBinding
@@ -88,7 +90,8 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
 
 
     private fun prepareNext() {
-
+        ActivityUtils.startActivity(MainActivity::class.java)
+        finish()
     }
 
 }
