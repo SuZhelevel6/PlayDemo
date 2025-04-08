@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
 <LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
@@ -49,39 +54,159 @@
         android:layout_marginTop="16dp"
         android:textSize="14sp"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="对话框"
+        android:textSize="14sp"/>
+
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnShowMessageDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="显示消息对话框"/>
+        android:text="消息对话框"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSelectDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="显示选择对话框"/>
+        android:text="选择对话框"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnInputDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="显示输入对话框"/>
+        android:text="输入对话框"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnSelectMessageMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="显示单选菜单对话框"/>
+        android:text="单选菜单对话框"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnMutiSelectMessageMenu"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="显示多选菜单对话框"/>
+        android:text="多选菜单对话框"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="阻断提示"
+        android:textSize="14sp"/>
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnWaitDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="显示等待对话框"/>
+        android:text="等待对话框"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnWaitAndTipDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="等待+提示对话框"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTipDialogSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="完成"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTipDialogWaring"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="警告"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTipDialogError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="错误"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnTipProgress"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="进度提示"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="非阻断提示"
+        android:textSize="14sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPoptip"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="基本提示"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPoptipBigMessage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="长文本提示"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPoptipSuccess"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="成功提示"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPoptipWarning"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="警告提示"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnPoptipError"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="错误提示"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="底部菜单"
+        android:textSize="14sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBottomDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="底部对话框"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBottomMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="底部菜单"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBottomSelectMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="底部单选菜单"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBottomMultiSelectMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="底部多选菜单"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnBottomCustomRecycleView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="底部自定义滑动布局 RecycleView"/>
+
 </LinearLayout>
+</ScrollView>
