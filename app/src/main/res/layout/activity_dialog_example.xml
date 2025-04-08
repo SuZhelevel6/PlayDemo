@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:padding="16dp">
+
+    <com.google.android.material.button.MaterialButtonToggleGroup
+        android:id="@+id/styleGroup"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp">
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMaterial"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Material"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnIos"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="iOS"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnKongzue"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="Kongzue"/>
+
+        <com.google.android.material.button.MaterialButton
+            android:id="@+id/btnMiui"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="wrap_content"
+            android:text="MIUI"/>
+    </com.google.android.material.button.MaterialButtonToggleGroup>
+
+
+    <TextView
+        android:id="@+id/txtStyleInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:textSize="14sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnShowMessageDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示消息对话框"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSelectDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示选择对话框"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnInputDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示输入对话框"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnSelectMessageMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示单选菜单对话框"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnMutiSelectMessageMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示多选菜单对话框"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnWaitDialog"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示等待对话框"/>
+</LinearLayout>

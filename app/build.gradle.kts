@@ -23,6 +23,10 @@ android {
             // 根据需要添加必要的ABI
             abiFilters.addAll(listOf("armeabi-v7a", "arm64-v8a"))
         }
+
+        // 开启DialogX组件的实时模糊效果
+        renderscriptTargetApi = 21
+        renderscriptSupportModeEnabled = true
     }
 
     buildTypes {
@@ -87,4 +91,13 @@ dependencies {
     //https://github.com/Blankj/AndroidUtilCode
     //https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
     implementation ("com.blankj:utilcodex:1.31.1")
+
+    // Dialog工具DialogX
+    // https://github.com/kongzue/DialogX
+    val dialogx_version = "0.0.50.beta33"
+    implementation ("com.github.kongzue.DialogX:DialogX:${dialogx_version}")
+    implementation ("com.github.kongzue.DialogX:DialogXIOSStyle:${dialogx_version}")
+    implementation ("com.github.kongzue.DialogX:DialogXKongzueStyle:${dialogx_version}")
+    implementation ("com.github.kongzue.DialogX:DialogXMIUIStyle:${dialogx_version}")
+    implementation ("com.github.kongzue.DialogX:DialogXMaterialYou:${dialogx_version}")
 }
