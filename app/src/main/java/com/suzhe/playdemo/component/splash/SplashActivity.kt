@@ -9,6 +9,7 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.suzhe.playdemo.component.main.MainActivity
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
+import com.suzhe.playdemo.component.test.RoundButtonDemoActivity
 import com.suzhe.playdemo.databinding.ActivitySplashBinding
 import com.suzhe.playdemo.utils.PreferenceUtil
 import com.suzhe.playdemo.utils.SuperDarkUtil
@@ -90,7 +91,7 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
 
 
     private fun prepareNext() {
-        ActivityUtils.startActivity(MainActivity::class.java)
+        ActivityUtils.startActivity(RoundButtonDemoActivity::class.java)
         finish()
     }
 
