@@ -1,5 +1,8 @@
 package com.suzhe.playdemo.component.test
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
+import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -8,6 +11,8 @@ import android.text.Spanned
 import android.text.style.ForegroundColorSpan
 import android.view.MotionEvent
 import android.view.View
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
@@ -15,8 +20,10 @@ import androidx.core.graphics.toColorInt
 import com.google.android.material.button.MaterialButton
 import com.google.android.material.button.MaterialButtonToggleGroup
 import com.kongzue.dialogx.DialogX
+import com.kongzue.dialogx.dialogs.GuideDialog;
 import com.kongzue.dialogx.dialogs.BottomDialog
 import com.kongzue.dialogx.dialogs.BottomMenu
+import com.kongzue.dialogx.dialogs.FullScreenDialog
 import com.kongzue.dialogx.dialogs.InputDialog
 import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.dialogs.MessageMenu
@@ -25,6 +32,7 @@ import com.kongzue.dialogx.dialogs.TipDialog
 import com.kongzue.dialogx.dialogs.WaitDialog
 import com.kongzue.dialogx.interfaces.BottomDialogSlideEventLifecycleCallback
 import com.kongzue.dialogx.interfaces.DialogLifecycleCallback
+import com.kongzue.dialogx.interfaces.OnBindView
 import com.kongzue.dialogx.interfaces.OnInputDialogButtonClickListener
 import com.kongzue.dialogx.interfaces.OnMenuButtonClickListener
 import com.kongzue.dialogx.interfaces.OnMenuItemSelectListener
@@ -34,6 +42,8 @@ import com.kongzue.dialogx.style.MIUIStyle
 import com.kongzue.dialogx.style.MaterialStyle
 import com.kongzue.dialogx.util.TextInfo
 import com.suzhe.playdemo.R
+import androidx.core.net.toUri
+import com.kongzue.dialogx.dialogs.PopMenu
 
 class DialogExampleActivity : AppCompatActivity() {
 
@@ -364,7 +374,98 @@ class DialogExampleActivity : AppCompatActivity() {
 
         }
 
+        // 显示网页
+        findViewById<MaterialButton>(R.id.btnFullScreenDialogWebPage).setOnClickListener {
+            FullScreenDialog.show(object : OnBindView<FullScreenDialog>(R.layout.layout_full_webview) {
+                override fun onBind(dialog: FullScreenDialog, v: View) {
+                    val btnClose = v.findViewById<View>(R.id.btn_close)
+                    val webView = v.findViewById<WebView>(R.id.webView)
 
+                    btnClose.setOnClickListener {
+                        dialog.dismiss()
+                    }
+
+                    val webSettings = webView.settings
+                    webSettings.javaScriptEnabled = true
+                    webSettings.loadWithOverviewMode = true
+                    webSettings.useWideViewPort = true
+                    webSettings.supportZoom()
+                    webSettings.allowFileAccess = true
+                    webSettings.javaScriptCanOpenWindowsAutomatically = true
+                    webSettings.loadsImagesAutomatically = true
+                    webSettings.defaultTextEncodingName = "utf-8"
+
+                    webView.webViewClient = object : WebViewClient() {
+                        override fun shouldOverrideUrlLoading(view: WebView, url: String): Boolean {
+                            try {
+                                val intent = Intent(Intent.ACTION_VIEW, url.toUri())
+                                startActivity(intent)
+                            } catch (e: ActivityNotFoundException) {
+                                e.printStackTrace()
+                            }
+                            return true
+                        }
+
+                        override fun onPageFinished(view: WebView, url: String) {
+                            super.onPageFinished(view, url)
+                        }
+                    }
+
+                    webView.loadUrl("https://www.limestart.cn/")
+                }
+            }).setBottomNonSafetyAreaBySelf(false)
+        }
+
+        // 基础上下文菜单
+        findViewById<MaterialButton>(R.id.btnContextMenu).setOnClickListener {
+            PopMenu.show("添加", "编辑", "删除", "分享")
+                .disableMenu("编辑", "删除")
+                .setIconResIds(
+                    R.mipmap.img_dialogx_demo_add,
+                    R.mipmap.img_dialogx_demo_edit,
+                    R.mipmap.img_dialogx_demo_delete,
+                    R.mipmap.img_dialogx_demo_share
+                )
+                .setOnMenuItemClickListener { dialog, text, index ->
+                    if (index == 0) {
+                        dialog.setMenuList(arrayOf("产品A", "产品B", "产品C"))
+                        return@setOnMenuItemClickListener true
+                    }
+                    return@setOnMenuItemClickListener false
+                }
+        }
+
+        // 选项菜单
+        findViewById<TextView>(R.id.btnSelectMenu).setOnClickListener { view ->
+            PopMenu.show(view, arrayOf("选项1", "选项2", "选项3"))
+                .setOnMenuItemClickListener { dialog, text: CharSequence, index ->
+                    (view as TextView).text = text
+                    return@setOnMenuItemClickListener false
+                }
+        }
+
+        // 普通引导
+        findViewById<MaterialButton>(R.id.btnShowGuide).setOnClickListener {
+            GuideDialog.show(R.mipmap.img_guide_tip)
+        }
+        // 指定引导
+        findViewById<MaterialButton>(R.id.btnShowGuideBaseViewRectangle).setOnClickListener {
+            GuideDialog.show(findViewById<MaterialButton>(R.id.btnBottomSelectMenu), R.mipmap.img_tip_login)
+        }
+        // 指定引导[矩形]
+        findViewById<MaterialButton>(R.id.btnShowGuideBaseViewRectangle).setOnClickListener {
+            GuideDialog.show(
+                findViewById<MaterialButton>(R.id.btnBottomSelectMenu),
+                GuideDialog.STAGE_LIGHT_TYPE.RECTANGLE,
+                R.mipmap.img_tip_login_clicktest
+            ).setOnBackgroundMaskClickListener { dialog, v ->
+                    return@setOnBackgroundMaskClickListener false
+                }
+                .setOnStageLightPathClickListener { dialog, v ->
+                    findViewById<MaterialButton>(R.id.btnBottomSelectMenu).callOnClick()
+                    return@setOnStageLightPathClickListener false
+                }
+        }
     }
 
     // 切换样式的方法

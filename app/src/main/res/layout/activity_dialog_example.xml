@@ -5,7 +5,6 @@
     android:layout_height="match_parent">
 
 <LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
@@ -108,7 +107,7 @@
         android:id="@+id/btnWaitAndTipDialog"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="等待+提示对话框"/>
+        android:text="等待+提示对话框" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnTipDialogSuccess"
@@ -126,7 +125,7 @@
         android:id="@+id/btnTipDialogError"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="错误"/>
+        android:text="错误" />
 
     <com.google.android.material.button.MaterialButton
         android:id="@+id/btnTipProgress"
@@ -207,6 +206,73 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="底部自定义滑动布局 RecycleView"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="全屏对话框"
+        android:textSize="14sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnFullScreenDialogWebPage"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="显示网页"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="上下文菜单"
+        android:textSize="14sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnContextMenu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="基础上下文菜单"/>
+
+    <TextView
+        android:id="@+id/btnSelectMenu"
+        android:layout_width="160dp"
+        android:layout_height="48dp"
+        android:layout_margin="5dp"
+        android:layout_marginTop="15dp"
+        android:background="@drawable/rect_dialogx_material_poptip_bkg"
+        android:drawableRight="@mipmap/img_drawable_down"
+        android:gravity="center_vertical"
+        android:paddingLeft="15dp"
+        android:paddingRight="5dp"
+        android:singleLine="true"
+        android:text="选项菜单"
+        android:textColor="@color/black"
+        android:textSize="16dp" />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="引导提示"
+        android:textSize="14sp"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnShowGuide"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="普通引导"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnShowGuideBaseView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="指定引导"/>
+
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnShowGuideBaseViewRectangle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="指定引导[矩形]"/>
 
 </LinearLayout>
 </ScrollView>
