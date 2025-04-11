@@ -2,7 +2,6 @@ package com.suzhe.playdemo.component.test
 
 import android.content.ActivityNotFoundException
 import android.content.Intent
-import android.net.Uri
 import android.os.Bundle
 import android.os.Handler
 import android.os.Looper
@@ -15,18 +14,17 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import android.widget.LinearLayout
 import android.widget.TextView
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.graphics.toColorInt
-import com.google.android.material.button.MaterialButton
-import com.google.android.material.button.MaterialButtonToggleGroup
+import androidx.core.net.toUri
 import com.kongzue.dialogx.DialogX
-import com.kongzue.dialogx.dialogs.GuideDialog;
 import com.kongzue.dialogx.dialogs.BottomDialog
 import com.kongzue.dialogx.dialogs.BottomMenu
 import com.kongzue.dialogx.dialogs.FullScreenDialog
+import com.kongzue.dialogx.dialogs.GuideDialog
 import com.kongzue.dialogx.dialogs.InputDialog
 import com.kongzue.dialogx.dialogs.MessageDialog
 import com.kongzue.dialogx.dialogs.MessageMenu
+import com.kongzue.dialogx.dialogs.PopMenu
 import com.kongzue.dialogx.dialogs.PopTip
 import com.kongzue.dialogx.dialogs.TipDialog
 import com.kongzue.dialogx.dialogs.WaitDialog
@@ -42,15 +40,13 @@ import com.kongzue.dialogx.style.MIUIStyle
 import com.kongzue.dialogx.style.MaterialStyle
 import com.kongzue.dialogx.util.TextInfo
 import com.suzhe.playdemo.R
-import androidx.core.net.toUri
-import com.kongzue.dialogx.dialogs.PopMenu
+import com.suzhe.playdemo.base.fragment.BaseViewModelFragment
+import com.suzhe.playdemo.databinding.FragmentDialogExampleBinding
 
-class DialogExampleActivity : AppCompatActivity() {
+class DialogExampleFragment : BaseViewModelFragment<FragmentDialogExampleBinding>() {
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_dialog_example)
-
+    override fun initViews() {
+        super.initViews()
         val singleSelectMenuText = arrayOf("拒绝", "询问", "始终允许", "仅在使用中允许")
         var selectMenuIndex: Int = 0
 
@@ -59,21 +55,27 @@ class DialogExampleActivity : AppCompatActivity() {
         var multiSelectMenuResultCache: String
 
         // 初始化样式选择
-        val styleGroup = findViewById<MaterialButtonToggleGroup>(R.id.styleGroup)
-        styleGroup.addOnButtonCheckedListener { group, checkedId, isChecked ->
-            if (isChecked) {
-                when (checkedId) {
-                    R.id.btnMaterial -> setMaterialStyle()
-                    R.id.btnIos -> setIosStyle()
-                    R.id.btnKongzue -> setKongzueStyle()
-                    R.id.btnMiui -> setMiuiStyle()
-                }
-            }
-        }
+
+        val btnMaterial = binding.btnMaterial
+        val btnIos = binding.btnIos
+        val btnKongzue = binding.btnKongzue
+        val btnMiui = binding.btnMiui
+
+        setMaterialStyle()
+        btnMaterial.setOnClickListener { setMaterialStyle() }
+        btnIos.setOnClickListener { setIosStyle() }
+        btnKongzue.setOnClickListener { setKongzueStyle() }
+        btnMiui.setOnClickListener { setMiuiStyle() }
 
         // 显示消息对话框按钮
-        findViewById<MaterialButton>(R.id.btnShowMessageDialog).setOnClickListener {
-            MessageDialog.show("对话框标题", "这里是对话框的正文内容，可以展示不同风格的视觉效果。", "确定","取消", "其他")
+        binding.btnShowMessageDialog.setOnClickListener {
+            MessageDialog.show(
+                "对话框标题",
+                "这里是对话框的正文内容，可以展示不同风格的视觉效果。",
+                "确定",
+                "取消",
+                "其他"
+            )
                 .setDialogLifecycleCallback(object : DialogLifecycleCallback<MessageDialog>() {
                     override fun onShow(dialog: MessageDialog) {
                         dialog.setTitleIcon(R.mipmap.star)
@@ -84,8 +86,14 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 显示选择对话框
-        findViewById<MaterialButton>(R.id.btnSelectDialog).setOnClickListener {
-            MessageDialog("删除确认", "移除App会将它从主屏幕移除并保留其所有数据。", "删除App", "取消", "移至App资源库")
+        binding.btnSelectDialog.setOnClickListener {
+            MessageDialog(
+                "删除确认",
+                "移除App会将它从主屏幕移除并保留其所有数据。",
+                "删除App",
+                "取消",
+                "移至App资源库"
+            )
                 .apply {
                     // 设置按钮垂直排列
                     buttonOrientation = LinearLayout.VERTICAL
@@ -112,7 +120,7 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 显示输入对话框按钮（新增部分）
-        findViewById<MaterialButton>(R.id.btnInputDialog).setOnClickListener {
+        binding.btnInputDialog.setOnClickListener {
             InputDialog("验证身份", "请输入您的登录密码", "确定", "取消")
                 .setInputText("123456") // 设置默认输入内容
                 .setOkButton(object : OnInputDialogButtonClickListener<InputDialog> {
@@ -133,13 +141,18 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 新增单选菜单按钮
-        findViewById<MaterialButton>(R.id.btnSelectMessageMenu).setOnClickListener {
+        binding.btnSelectMessageMenu.setOnClickListener {
             var selectMenuIndex = 0
             MessageMenu.show(singleSelectMenuText)
                 .setMessage("这里是权限确认的文本说明")
                 .setTitle("权限设置")
                 .setOnMenuItemClickListener(object : OnMenuItemSelectListener<MessageMenu>() {
-                    override fun onOneItemSelect(dialog: MessageMenu, text: CharSequence, index: Int, select: Boolean) {
+                    override fun onOneItemSelect(
+                        dialog: MessageMenu,
+                        text: CharSequence,
+                        index: Int,
+                        select: Boolean
+                    ) {
                         selectMenuIndex = index
                     }
                 })
@@ -151,13 +164,17 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 新增多选菜单按钮
-        findViewById<MaterialButton>(R.id.btnMutiSelectMessageMenu).setOnClickListener {
+        binding.btnMutiSelectMessageMenu.setOnClickListener {
             var selectMenuIndexArray: IntArray = intArrayOf(1, 2) // 初始化一个包含指定元素的数组
             var multiSelectMenuResultCache = "1"
             MessageMenu.show(multiSelectMenuText)
                 .setMessage("请选择城市")
                 .setOnMenuItemClickListener(object : OnMenuItemSelectListener<MessageMenu>() {
-                    override fun onMultiItemSelect(dialog: MessageMenu, text: Array<out CharSequence>, index: IntArray) {
+                    override fun onMultiItemSelect(
+                        dialog: MessageMenu,
+                        text: Array<out CharSequence>,
+                        index: IntArray
+                    ) {
                         multiSelectMenuResultCache = text.joinToString(" ")
                         selectMenuIndexArray = index
                     }
@@ -170,7 +187,7 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 新增等待对话框按钮
-        findViewById<MaterialButton>(R.id.btnWaitDialog).setOnClickListener {
+        binding.btnWaitDialog.setOnClickListener {
             WaitDialog.show("正在加载...")
                 .setOnBackPressedListener {
                     PopTip.show("操作进行中...")
@@ -185,7 +202,7 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 显示带完成提示的等待对话框
-        findViewById<MaterialButton>(R.id.btnWaitAndTipDialog).setOnClickListener {
+        binding.btnWaitAndTipDialog.setOnClickListener {
 
             WaitDialog.show("处理中...").setOnBackPressedListener {
                 PopTip.show("按下返回", "关闭")
@@ -198,22 +215,22 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 显示成功提示框
-        findViewById<MaterialButton>(R.id.btnTipDialogSuccess).setOnClickListener {
+        binding.btnTipDialogSuccess.setOnClickListener {
             TipDialog.show("Success!", WaitDialog.TYPE.SUCCESS)
         }
 
         // 显示警告提示框
-        findViewById<MaterialButton>(R.id.btnTipDialogWaring).setOnClickListener {
+        binding.btnTipDialogWaring.setOnClickListener {
             TipDialog.show("Warning!", WaitDialog.TYPE.WARNING)
         }
 
         // 显示错误提示框
-        findViewById<MaterialButton>(R.id.btnTipDialogError).setOnClickListener {
+        binding.btnTipDialogError.setOnClickListener {
             TipDialog.show("Error!", WaitDialog.TYPE.ERROR, 3500)
         }
 
         // 进度提示对话框按钮
-        findViewById<MaterialButton>(R.id.btnTipProgress).setOnClickListener {
+        binding.btnTipProgress.setOnClickListener {
             var waitId = 0
             var progress = 0f
 
@@ -253,46 +270,59 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 基本提示按钮
-        findViewById<MaterialButton>(R.id.btnPoptip).setOnClickListener {
+        binding.btnPoptip.setOnClickListener {
             TipDialog.show("操作成功", WaitDialog.TYPE.SUCCESS)
         }
 
         // 大段文本提示按钮
-        findViewById<MaterialButton>(R.id.btnPoptipBigMessage).setOnClickListener {
+        binding.btnPoptipBigMessage.setOnClickListener {
             TipDialog.show(
                 SpannableString("这是一个超过三行的大段文本提示对话框演示内容，当文本内容超过三行时会自动启用滚动显示功能。").apply {
-                    setSpan(ForegroundColorSpan(("#FFA72C").toColorInt()), 9, 13, Spanned.SPAN_EXCLUSIVE_EXCLUSIVE)
+                    setSpan(
+                        ForegroundColorSpan(("#FFA72C").toColorInt()),
+                        9,
+                        13,
+                        Spanned.SPAN_EXCLUSIVE_EXCLUSIVE
+                    )
                 },
                 WaitDialog.TYPE.WARNING
             )
         }
 
         // 成功提示按钮
-        findViewById<MaterialButton>(R.id.btnPoptipSuccess).setOnClickListener {
+        binding.btnPoptipSuccess.setOnClickListener {
             PopTip.show("操作已完成")
         }
 
         // 警告提示按钮
-        findViewById<MaterialButton>(R.id.btnPoptipWarning).setOnClickListener {
+        binding.btnPoptipWarning.setOnClickListener {
             PopTip.show(R.mipmap.skin, "收到一个画板")
                 .setAutoTintIconInLightOrDarkMode(false)
         }
 
         // 错误提示按钮
-        findViewById<MaterialButton>(R.id.btnPoptipError).setOnClickListener {
+        binding.btnPoptipError.setOnClickListener {
             PopTip.show(R.mipmap.skin, "邮件已发送", "撤回")
                 .setAutoTintIconInLightOrDarkMode(false)
         }
         // 底部对话框按钮
-        findViewById<MaterialButton>(R.id.btnBottomDialog).setOnClickListener {
-            val s =  "你可以向下滑动来关闭这个对话框 or 点击空白区域或返回键来关闭这个对话框"
-            BottomDialog("标题", "这里是对话框内容。\n$s。\n底部对话框也支持自定义布局扩展使用方式。").apply {
-                setDialogLifecycleCallback(object : BottomDialogSlideEventLifecycleCallback<BottomDialog>() {
+        binding.btnBottomDialog.setOnClickListener {
+            val s = "你可以向下滑动来关闭这个对话框 or 点击空白区域或返回键来关闭这个对话框"
+            BottomDialog(
+                "标题",
+                "这里是对话框内容。\n$s。\n底部对话框也支持自定义布局扩展使用方式。"
+            ).apply {
+                setDialogLifecycleCallback(object :
+                    BottomDialogSlideEventLifecycleCallback<BottomDialog>() {
                     override fun onSlideClose(dialog: BottomDialog): Boolean {
                         return super.onSlideClose(dialog)
                     }
 
-                    override fun onSlideTouchEvent(dialog: BottomDialog, v: View, event: MotionEvent): Boolean {
+                    override fun onSlideTouchEvent(
+                        dialog: BottomDialog,
+                        v: View,
+                        event: MotionEvent
+                    ): Boolean {
                         return super.onSlideTouchEvent(dialog, v, event)
                     }
                 })
@@ -300,8 +330,19 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 底部菜单按钮
-        findViewById<MaterialButton>(R.id.btnBottomMenu).setOnClickListener {
-            BottomMenu.show("添加", "查看", "编辑", "删除", "分享", "评论", "下载", "收藏", "赞！", "不喜欢")
+        binding.btnBottomMenu.setOnClickListener {
+            BottomMenu.show(
+                "添加",
+                "查看",
+                "编辑",
+                "删除",
+                "分享",
+                "评论",
+                "下载",
+                "收藏",
+                "赞！",
+                "不喜欢"
+            )
                 .setTitle("操作菜单")
                 .setMessage("请选择要执行的操作")
                 .setBottomDialogMaxHeight(0.6f)
@@ -324,17 +365,23 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 底部单选对话框
-        findViewById<MaterialButton>(R.id.btnBottomSelectMenu).setOnClickListener {
+        binding.btnBottomSelectMenu.setOnClickListener {
             BottomMenu.show(singleSelectMenuText)
                 .setShowSelectedBackgroundTips(true)
                 .setMessage("这里是权限确认的文本说明，这是一个演示菜单")
                 .setTitle("获得权限标题")
                 .setOnMenuItemClickListener(object : OnMenuItemSelectListener<BottomMenu>() {
-                    override fun onOneItemSelect(dialog: BottomMenu, text: CharSequence, index: Int, select: Boolean) {
+                    override fun onOneItemSelect(
+                        dialog: BottomMenu,
+                        text: CharSequence,
+                        index: Int,
+                        select: Boolean
+                    ) {
                         selectMenuIndex = index
                     }
                 })
-                .setCancelButton("确定",
+                .setCancelButton(
+                    "确定",
                     OnMenuButtonClickListener { _, _ ->
                         PopTip.show("已选择：${singleSelectMenuText[selectMenuIndex]}")
                         false
@@ -343,8 +390,8 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 底部多选对话框
-        findViewById<MaterialButton>(R.id.btnBottomMultiSelectMenu).setOnClickListener {
-            selectMenuIndexArray = intArrayOf(1,2)
+        binding.btnBottomMultiSelectMenu.setOnClickListener {
+            selectMenuIndexArray = intArrayOf(1, 2)
             multiSelectMenuResultCache = " "
             MessageMenu.show(multiSelectMenuText)
                 .setMessage("这里是选择城市的模拟范例，这是一个演示菜单")
@@ -361,7 +408,8 @@ class DialogExampleActivity : AppCompatActivity() {
                         selectMenuIndexArray = indexArray
                     }
                 })
-                .setOkButton("确定",
+                .setOkButton(
+                    "确定",
                     OnMenuButtonClickListener { _, _ ->
                         PopTip.show("已选择：${multiSelectMenuResultCache}")
                         false
@@ -370,13 +418,14 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 底部自定义滑动布局 RecycleView
-        findViewById<MaterialButton>(R.id.btnBottomCustomRecycleView).setOnClickListener {
+        binding.btnBottomCustomRecycleView.setOnClickListener {
 
         }
 
         // 显示网页
-        findViewById<MaterialButton>(R.id.btnFullScreenDialogWebPage).setOnClickListener {
-            FullScreenDialog.show(object : OnBindView<FullScreenDialog>(R.layout.layout_full_webview) {
+        binding.btnFullScreenDialogWebPage.setOnClickListener {
+            FullScreenDialog.show(object :
+                OnBindView<FullScreenDialog>(R.layout.layout_full_webview) {
                 override fun onBind(dialog: FullScreenDialog, v: View) {
                     val btnClose = v.findViewById<View>(R.id.btn_close)
                     val webView = v.findViewById<WebView>(R.id.webView)
@@ -417,7 +466,7 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 基础上下文菜单
-        findViewById<MaterialButton>(R.id.btnContextMenu).setOnClickListener {
+        binding.btnContextMenu.setOnClickListener {
             PopMenu.show("添加", "编辑", "删除", "分享")
                 .disableMenu("编辑", "删除")
                 .setIconResIds(
@@ -436,7 +485,7 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 选项菜单
-        findViewById<TextView>(R.id.btnSelectMenu).setOnClickListener { view ->
+        binding.btnSelectMenu.setOnClickListener { view ->
             PopMenu.show(view, arrayOf("选项1", "选项2", "选项3"))
                 .setOnMenuItemClickListener { dialog, text: CharSequence, index ->
                     (view as TextView).text = text
@@ -445,24 +494,28 @@ class DialogExampleActivity : AppCompatActivity() {
         }
 
         // 普通引导
-        findViewById<MaterialButton>(R.id.btnShowGuide).setOnClickListener {
+        binding.btnShowGuide.setOnClickListener {
             GuideDialog.show(R.mipmap.img_guide_tip)
         }
         // 指定引导
-        findViewById<MaterialButton>(R.id.btnShowGuideBaseViewRectangle).setOnClickListener {
-            GuideDialog.show(findViewById<MaterialButton>(R.id.btnBottomSelectMenu), R.mipmap.img_tip_login)
+        binding.btnShowGuideBaseView.setOnClickListener {
+            GuideDialog.show(
+                binding.btnPoptipSuccess,
+                GuideDialog.STAGE_LIGHT_TYPE.CIRCLE_OUTSIDE,
+                R.mipmap.img_tip_login
+            )
         }
         // 指定引导[矩形]
-        findViewById<MaterialButton>(R.id.btnShowGuideBaseViewRectangle).setOnClickListener {
+        binding.btnShowGuideBaseViewRectangle.setOnClickListener {
             GuideDialog.show(
-                findViewById<MaterialButton>(R.id.btnBottomSelectMenu),
+                binding.btnBottomSelectMenu,
                 GuideDialog.STAGE_LIGHT_TYPE.RECTANGLE,
                 R.mipmap.img_tip_login_clicktest
             ).setOnBackgroundMaskClickListener { dialog, v ->
-                    return@setOnBackgroundMaskClickListener false
-                }
+                return@setOnBackgroundMaskClickListener false
+            }
                 .setOnStageLightPathClickListener { dialog, v ->
-                    findViewById<MaterialButton>(R.id.btnBottomSelectMenu).callOnClick()
+                    binding.btnBottomSelectMenu.callOnClick()
                     return@setOnStageLightPathClickListener false
                 }
         }
@@ -494,6 +547,16 @@ class DialogExampleActivity : AppCompatActivity() {
     }
 
     private fun updateStyleInfo(text: String) {
-        findViewById<TextView>(R.id.txtStyleInfo).text = text
+        binding.txtStyleInfo.text = text
+    }
+
+    companion object {
+        fun newInstance(): DialogExampleFragment {
+            val args = Bundle()
+
+            val fragment = DialogExampleFragment()
+            fragment.arguments = args
+            return fragment
+        }
     }
 }

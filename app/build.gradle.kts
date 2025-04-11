@@ -101,6 +101,7 @@ dependencies {
     implementation ("com.github.kongzue.DialogX:DialogXKongzueStyle:${dialogx_version}")
     implementation ("com.github.kongzue.DialogX:DialogXMIUIStyle:${dialogx_version}")
     implementation ("com.github.kongzue.DialogX:DialogXMaterialYou:${dialogx_version}")
+    implementation ("com.kongzue.stacklabel:StackLabel:1.2.0")
 
     //类似TabLayout的控件
     //https://github.com/angcyo/DslTabLayout

@@ -3,7 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-                                                   android:layout_height="match_parent">
+    android:layout_height="match_parent">
+
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -35,8 +36,7 @@
             app:tab_item_is_equ_width="true"
             app:tab_select_color="?attr/colorPrimary"
             app:tab_text_view_id="@id/content"
-            tools:tab_default_index="0">
-        </com.angcyo.tablayout.DslTabLayout>
+            tools:tab_default_index="0"></com.angcyo.tablayout.DslTabLayout>
 
     </LinearLayout>
 

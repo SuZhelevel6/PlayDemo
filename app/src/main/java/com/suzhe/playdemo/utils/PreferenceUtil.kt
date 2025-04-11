@@ -1,7 +1,6 @@
 package com.suzhe.playdemo.utils
 
 import com.tencent.mmkv.MMKV
-import java.lang.reflect.Array.setBoolean
 
 /**
  * 偏好设置工具类
@@ -14,11 +13,11 @@ object PreferenceUtil {
     private const val ACCEPT_TERM = "Accept_Term"
 
     fun isAcceptTermsServiceAgreement(): Boolean {
-        return getBoolean(ACCEPT_TERM,false)
+        return getBoolean(ACCEPT_TERM, false)
     }
 
     fun setAcceptTermsServiceAgreement() {
-        return putBoolean(ACCEPT_TERM,true)
+        return putBoolean(ACCEPT_TERM, true)
     }
 
     //region 辅助方法

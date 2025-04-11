@@ -22,12 +22,6 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:name=".component.test.DialogExampleActivity"
-            android:exported="false" />
-        <activity
-            android:name=".component.test.RoundButtonDemoActivity"
-            android:exported="false" />
-        <activity
             android:name=".component.splash.SplashActivity"
             android:exported="true">
             <intent-filter>

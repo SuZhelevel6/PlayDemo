@@ -6,15 +6,13 @@ import androidx.activity.result.contract.ActivityResultContracts
 import com.blankj.utilcode.util.ActivityUtils
 import com.blankj.utilcode.util.ToastUtils
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
-import com.suzhe.playdemo.component.main.MainActivity
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
-import com.suzhe.playdemo.component.test.DialogExampleActivity
-import com.suzhe.playdemo.component.test.RoundButtonDemoActivity
+import com.suzhe.playdemo.component.main.MainActivity
 import com.suzhe.playdemo.databinding.ActivitySplashBinding
 import com.suzhe.playdemo.utils.PreferenceUtil
 import com.suzhe.playdemo.utils.SuperDarkUtil
-import java.util.*
+import java.util.Calendar
 
 class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
 
@@ -33,7 +31,10 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
         // 处理权限请求的结果
         var allGranted = true
         permissions.entries.forEach { entry ->
-            Log.d("Permission", "Permission ${entry.key} is ${if (entry.value) "granted" else "denied"}")
+            Log.d(
+                "Permission",
+                "Permission ${entry.key} is ${if (entry.value) "granted" else "denied"}"
+            )
             if (!entry.value) {
                 allGranted = false
             }

@@ -9,7 +9,11 @@ import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.color.DynamicColors
 import com.kongzue.dialogx.DialogX
 import com.tencent.mmkv.MMKV
-import kotlinx.coroutines.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import xcrash.TombstoneManager
 import xcrash.XCrash
 
@@ -62,7 +66,10 @@ class AppContext : Application() {
                         put(MediaStore.MediaColumns.DISPLAY_NAME, file.name)
                         put(MediaStore.MediaColumns.MIME_TYPE, "txt")
                     }
-                    val uri = contentResolver.insert(MediaStore.Files.getContentUri("external"), contentValues) ?: continue
+                    val uri = contentResolver.insert(
+                        MediaStore.Files.getContentUri("external"),
+                        contentValues
+                    ) ?: continue
                     contentResolver.openOutputStream(uri)?.use { out ->
                         file.inputStream().use { ins ->
                             ins.copyTo(out) // 复制崩溃日志文件内容

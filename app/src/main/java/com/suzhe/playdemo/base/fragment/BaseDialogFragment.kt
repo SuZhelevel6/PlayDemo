@@ -6,6 +6,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.annotation.IdRes
 import androidx.fragment.app.DialogFragment
+
 /**
  * 所有DialogFragment对话框父类
  */

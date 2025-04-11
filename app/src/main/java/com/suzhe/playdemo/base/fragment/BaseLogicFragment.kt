@@ -1,7 +1,6 @@
 package com.suzhe.playdemo.base.fragment
 
 import com.suzhe.playdemo.base.activity.BaseLogicActivity
-import com.suzhe.playdemo.base.model.BaseViewModel
 
 abstract class BaseLogicFragment : BaseCommonFragment() {
     /**

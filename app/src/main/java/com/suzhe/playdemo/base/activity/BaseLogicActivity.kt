@@ -1,17 +1,14 @@
 package com.suzhe.playdemo.base.activity
 
-import android.net.http.HttpException
 import com.blankj.utilcode.util.LogUtils
 import com.blankj.utilcode.util.NetworkUtils
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
-import com.suzhe.playdemo.AppContext
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.model.BaseViewModel
 import com.suzhe.playdemo.ext.longToast
 import com.suzhe.playdemo.ext.shortToast
 import com.suzhe.playdemo.utils.SuperDarkUtil
 import org.apache.commons.lang3.StringUtils
-import java.lang.ref.WeakReference
 
 /**
  * 本项目的通用逻辑，例如：背景颜色等

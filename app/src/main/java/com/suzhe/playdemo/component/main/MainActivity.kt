@@ -4,8 +4,15 @@ import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
 import android.util.Log
-import android.view.*
-import android.widget.*
+import android.view.Gravity
+import android.view.MotionEvent
+import android.view.View
+import android.view.ViewConfiguration
+import android.view.ViewGroup
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
+import android.widget.FrameLayout
+import android.widget.ImageView
 import androidx.fragment.app.FragmentContainerView
 import androidx.viewpager2.widget.ViewPager2
 import com.angcyo.tablayout.DslTabLayout
@@ -23,9 +30,9 @@ import com.suzhe.playdemo.databinding.ItemTabBinding
 class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
 
     private var context = this@MainActivity
-    private lateinit var mGlobalAction : QMUIPopup
-    private lateinit var mTabs : DslTabLayout
-    private lateinit var mPager : ViewPager2
+    private lateinit var mGlobalAction: QMUIPopup
+    private lateinit var mTabs: DslTabLayout
+    private lateinit var mPager: ViewPager2
 
     private val tabTitles =
         arrayOf(
@@ -45,7 +52,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding.root.addView(CustomRootView(this))
+        binding.root.addView(SkinFlotButton(context))
     }
 
     override fun initViews() {
@@ -58,7 +65,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
         mPager = binding.pager
         mPager.apply {
             offscreenPageLimit = tabTitles.size
-            adapter = MainAdapter(this@MainActivity,tabTitles.size)
+            adapter = MainAdapter(this@MainActivity, tabTitles.size)
             ViewPager2Delegate.install(mPager, mTabs, false)
         }
     }
@@ -76,7 +83,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
 
 
     private fun showGlobalActionPopup(v: View) {
-        Log.d("suzhe","showGlobalActionPopup")
+        Log.d("suzhe", "showGlobalActionPopup")
         // 1. 定义菜单项数据
         val listItems = arrayOf(
             "Change Skin"
@@ -84,7 +91,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
         val data = listItems.toList()
 
         // 2. 构建ArrayAdapter，适配菜单项列表到弹窗中
-        val adapter = ArrayAdapter(this, R.layout.simple_list_item, data)
+        val adapter = ArrayAdapter(context, R.layout.simple_list_item, data)
 
         // 3. 设置菜单项点击事件监听器
         val onItemClickListener = AdapterView.OnItemClickListener { adapterView, view, i, l ->
@@ -93,9 +100,9 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
                 // 定义皮肤选项
                 val items = arrayOf("蓝色（默认）", "黑色", "白色")
                 // 构建 AlertDialog
-                val builder = android.app.AlertDialog.Builder(this)
+                val builder = android.app.AlertDialog.Builder(context)
                 builder.setTitle("选择皮肤")
-                   .setItems(items) { dialog, which ->
+                    .setItems(items) { dialog, which ->
                         // 这里可以添加切换皮肤的逻辑
                         dialog.dismiss()
                     }
@@ -103,27 +110,27 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
                 dialog.show()
             }
             // 3. 无论点击哪个菜单项，关闭全局操作弹窗
-            mGlobalAction?.dismiss()
+            mGlobalAction.dismiss()
         }
 
         // 4. 构建全局操作弹窗，设置弹窗样式、方向、阴影等属性，并显示在传入的视图上
         mGlobalAction = QMUIPopups.listPopup(
-            this,
-            QMUIDisplayHelper.dp2px(this, 250),
-            QMUIDisplayHelper.dp2px(this, 300),
+            context,
+            QMUIDisplayHelper.dp2px(context, 250),
+            QMUIDisplayHelper.dp2px(context, 300),
             adapter,
             onItemClickListener
         )
             .animStyle(QMUIPopup.ANIM_GROW_FROM_CENTER)
             .preferredDirection(QMUIPopup.DIRECTION_TOP)
             .shadow(true)
-            .edgeProtection(QMUIDisplayHelper.dp2px(this, 10))
-            .offsetYIfTop(QMUIDisplayHelper.dp2px(this, 5))
-//            .skinManager(QMUISkinManager.defaultInstance(this))
+            .edgeProtection(QMUIDisplayHelper.dp2px(context, 10))
+            .offsetYIfTop(QMUIDisplayHelper.dp2px(context, 5))
+//            .skinManager(QMUISkinManager.defaultInstance(context))
             .show(v)
     }
 
-    inner class CustomRootView @JvmOverloads constructor(
+    inner class SkinFlotButton @JvmOverloads constructor(
         context: Context,
         attrs: AttributeSet? = null,
         defStyleAttr: Int = 0
@@ -132,24 +139,34 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
         //region 成员变量定义
         /// Fragment容器，用于展示Fragment页面
         private val fragmentContainer: FragmentContainerView
+
         /// 全局按钮，圆形图片按钮，用于触发全局操作弹窗
         private val globalBtn: QMUIRadiusImageView2
+
         /// 按钮位置偏移辅助类，用于处理按钮的拖动效果
         private val globalBtnOffsetHelper: QMUIViewOffsetHelper
+
         /// 按钮尺寸，单位：像素
         private val btnSize: Int
+
         /// 触摸最小位移距离，用于判断是否拖动
         private val touchSlop: Int
+
         /// 记录触摸按下时的X坐标
         private var touchDownX = 0f
+
         /// 记录触摸按下时的Y坐标
         private var touchDownY = 0f
+
         /// 记录上一次触摸时的X坐标
         private var lastTouchX = 0f
+
         /// 记录上一次触摸时的Y坐标
         private var lastTouchY = 0f
+
         /// 标识是否处于拖动状态
         private var isDragging = false
+
         /// 标识触摸是否在全局按钮区域内开始
         private var isTouchDownInGlobalBtn = false
         //endregion
@@ -232,6 +249,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
                     touchDownY = y
                     lastTouchY = y
                 }
+
                 MotionEvent.ACTION_MOVE -> {
                     // 2. 如果尚未开始拖动，检测是否滑动超过touchSlop阈值以启动拖动
                     if (!isDragging && isTouchDownInGlobalBtn) {
@@ -253,9 +271,11 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
                         val gh = globalBtn.height
                         val h = height
                         // 边界检测：左侧与右侧
-                        val newDx = if (gx + dx < 0) -gx else if (gx + dx + gw > w) w - gw - gx else dx
+                        val newDx =
+                            if (gx + dx < 0) -gx else if (gx + dx + gw > w) w - gw - gx else dx
                         // 边界检测：顶部与底部
-                        val newDy = if (gy + dy < 0) -gy else if (gy + dy + gh > h) h - gh - gy else dy
+                        val newDy =
+                            if (gy + dy < 0) -gy else if (gy + dy + gh > h) h - gh - gy else dy
                         // 更新全局按钮的水平与垂直偏移
                         globalBtnOffsetHelper.setLeftAndRightOffset(
                             globalBtnOffsetHelper.leftAndRightOffset + newDx
@@ -268,6 +288,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
                     lastTouchX = x
                     lastTouchY = y
                 }
+
                 MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
                     // 5. 触摸结束，重置拖动状态与触摸标记
                     isDragging = false
@@ -295,6 +316,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
                     touchDownY = y
                     lastTouchY = y
                 }
+
                 MotionEvent.ACTION_MOVE -> {
                     if (!isDragging && isTouchDownInGlobalBtn) {
                         val dx = (x - touchDownX).toInt()
@@ -312,8 +334,10 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
                         val w = width
                         val gh = globalBtn.height
                         val h = height
-                        val newDx = if (gx + dx < 0) -gx else if (gx + dx + gw > w) w - gw - gx else dx
-                        val newDy = if (gy + dy < 0) -gy else if (gy + dy + gh > h) h - gh - gy else dy
+                        val newDx =
+                            if (gx + dx < 0) -gx else if (gx + dx + gw > w) w - gw - gx else dx
+                        val newDy =
+                            if (gy + dy < 0) -gy else if (gy + dy + gh > h) h - gh - gy else dy
                         globalBtnOffsetHelper.setLeftAndRightOffset(
                             globalBtnOffsetHelper.leftAndRightOffset + newDx
                         )
@@ -324,6 +348,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
                     lastTouchX = x
                     lastTouchY = y
                 }
+
                 MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
                     isDragging = false
                     isTouchDownInGlobalBtn = false
