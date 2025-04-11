@@ -66,6 +66,7 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("androidx.databinding:viewbinding:8.9.0")
     implementation("androidx.activity:activity:1.8.0")
+    implementation("androidx.compose.ui:ui-text-android:1.7.8")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -100,4 +101,9 @@ dependencies {
     implementation ("com.github.kongzue.DialogX:DialogXKongzueStyle:${dialogx_version}")
     implementation ("com.github.kongzue.DialogX:DialogXMIUIStyle:${dialogx_version}")
     implementation ("com.github.kongzue.DialogX:DialogXMaterialYou:${dialogx_version}")
+
+    //类似TabLayout的控件
+    //https://github.com/angcyo/DslTabLayout
+    implementation ("com.github.angcyo.DslTablayout:TabLayout:3.5.3")
+    implementation ("com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3")
 }

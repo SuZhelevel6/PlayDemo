@@ -7,6 +7,9 @@ import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.FragmentContainerView
+import androidx.viewpager2.widget.ViewPager2
+import com.angcyo.tablayout.DslTabLayout
+import com.angcyo.tablayout.delegate2.ViewPager2Delegate
 import com.qmuiteam.qmui.util.QMUIDisplayHelper
 import com.qmuiteam.qmui.util.QMUIViewOffsetHelper
 import com.qmuiteam.qmui.widget.QMUIRadiusImageView2
@@ -15,10 +18,29 @@ import com.qmuiteam.qmui.widget.popup.QMUIPopups
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
 import com.suzhe.playdemo.databinding.ActivityMainBinding
+import com.suzhe.playdemo.databinding.ItemTabBinding
 
 class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
 
+    private var context = this@MainActivity
     private lateinit var mGlobalAction : QMUIPopup
+    private lateinit var mTabs : DslTabLayout
+    private lateinit var mPager : ViewPager2
+
+    private val tabTitles =
+        arrayOf(
+            "Discover",
+            "Video",
+            "Category",
+            "Me"
+        )
+    private val tabIcons = intArrayOf(
+        R.drawable.selector_tab_discovery,
+        R.drawable.selector_tab_video,
+        R.drawable.selector_tab_category,
+        R.drawable.selector_tab_me
+    )
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -26,6 +48,31 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
         binding.root.addView(CustomRootView(this))
     }
 
+    override fun initViews() {
+        super.initViews()
+        initTabs()
+        initPagers()
+    }
+
+    private fun initPagers() {
+        mPager = binding.pager
+        mPager.apply {
+            offscreenPageLimit = tabTitles.size
+            adapter = MainAdapter(this@MainActivity,tabTitles.size)
+            ViewPager2Delegate.install(mPager, mTabs, false)
+        }
+    }
+
+    private fun initTabs() {
+        mTabs = binding.tab
+        for (i in tabTitles.indices) {
+            ItemTabBinding.inflate(layoutInflater).apply {
+                content.setText(tabTitles[i])
+                icon.setImageResource(tabIcons[i])
+                mTabs.addView(root)
+            }
+        }
+    }
 
 
     private fun showGlobalActionPopup(v: View) {

@@ -92,7 +92,7 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
 
 
     private fun prepareNext() {
-        ActivityUtils.startActivity(DialogExampleActivity::class.java)
+        ActivityUtils.startActivity(MainActivity::class.java)
         finish()
     }
 

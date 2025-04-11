@@ -34,12 +34,15 @@ class AppContext : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
-        // 初始化LogUtils
+        // 初始化 LogUtils
         LogUtils.getConfig().setGlobalTag(AppUtils.getAppPackageName())
+        // 初始化 MMKV 键值对存储框架
         initMMKV()
+        // 初始化应用崩溃日志
         processCrashLogs()
         // 开启动态主题
         DynamicColors.applyToActivitiesIfAvailable(instance)
+        // 初始化DialogX框架
         DialogX.init(this)
     }
 
