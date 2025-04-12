@@ -187,7 +187,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
 
             // 3. 构造全局按钮，并设置图标、缩放模式、圆角及阴影效果
             globalBtn = QMUIRadiusImageView2(context).apply {
-                setImageResource(R.mipmap.skin)
+                setImageResource(R.drawable.skin)
                 scaleType = ImageView.ScaleType.CENTER_INSIDE
                 setRadiusAndShadow(
                     btnSize / 2,

@@ -78,7 +78,7 @@ class DialogExampleFragment : BaseViewModelFragment<FragmentDialogExampleBinding
             )
                 .setDialogLifecycleCallback(object : DialogLifecycleCallback<MessageDialog>() {
                     override fun onShow(dialog: MessageDialog) {
-                        dialog.setTitleIcon(R.mipmap.star)
+                        dialog.setTitleIcon(R.drawable.star)
                     }
                 })
                 // 按钮显示为纵向
@@ -296,13 +296,13 @@ class DialogExampleFragment : BaseViewModelFragment<FragmentDialogExampleBinding
 
         // 警告提示按钮
         binding.btnPoptipWarning.setOnClickListener {
-            PopTip.show(R.mipmap.skin, "收到一个画板")
+            PopTip.show(R.drawable.skin, "收到一个画板")
                 .setAutoTintIconInLightOrDarkMode(false)
         }
 
         // 错误提示按钮
         binding.btnPoptipError.setOnClickListener {
-            PopTip.show(R.mipmap.skin, "邮件已发送", "撤回")
+            PopTip.show(R.drawable.skin, "邮件已发送", "撤回")
                 .setAutoTintIconInLightOrDarkMode(false)
         }
         // 底部对话框按钮
@@ -351,16 +351,16 @@ class DialogExampleFragment : BaseViewModelFragment<FragmentDialogExampleBinding
                     false
                 }
                 .setIconResIds(
-                    R.mipmap.img_dialogx_demo_add,
-                    R.mipmap.img_dialogx_demo_view,
-                    R.mipmap.img_dialogx_demo_edit,
-                    R.mipmap.img_dialogx_demo_delete,
-                    R.mipmap.img_dialogx_demo_share,
-                    R.mipmap.img_dialogx_demo_comment,
-                    R.mipmap.img_dialogx_demo_download,
-                    R.mipmap.img_dialogx_demo_favorite,
-                    R.mipmap.img_dialogx_demo_good,
-                    R.mipmap.img_dialogx_demo_dislike
+                    R.drawable.img_dialogx_demo_add,
+                    R.drawable.img_dialogx_demo_view,
+                    R.drawable.img_dialogx_demo_edit,
+                    R.drawable.img_dialogx_demo_delete,
+                    R.drawable.img_dialogx_demo_share,
+                    R.drawable.img_dialogx_demo_comment,
+                    R.drawable.img_dialogx_demo_download,
+                    R.drawable.img_dialogx_demo_favorite,
+                    R.drawable.img_dialogx_demo_good,
+                    R.drawable.img_dialogx_demo_dislike
                 )
         }
 
@@ -470,10 +470,10 @@ class DialogExampleFragment : BaseViewModelFragment<FragmentDialogExampleBinding
             PopMenu.show("添加", "编辑", "删除", "分享")
                 .disableMenu("编辑", "删除")
                 .setIconResIds(
-                    R.mipmap.img_dialogx_demo_add,
-                    R.mipmap.img_dialogx_demo_edit,
-                    R.mipmap.img_dialogx_demo_delete,
-                    R.mipmap.img_dialogx_demo_share
+                    R.drawable.img_dialogx_demo_add,
+                    R.drawable.img_dialogx_demo_edit,
+                    R.drawable.img_dialogx_demo_delete,
+                    R.drawable.img_dialogx_demo_share
                 )
                 .setOnMenuItemClickListener { dialog, text, index ->
                     if (index == 0) {
@@ -495,14 +495,14 @@ class DialogExampleFragment : BaseViewModelFragment<FragmentDialogExampleBinding
 
         // 普通引导
         binding.btnShowGuide.setOnClickListener {
-            GuideDialog.show(R.mipmap.img_guide_tip)
+            GuideDialog.show(R.drawable.img_guide_tip)
         }
         // 指定引导
         binding.btnShowGuideBaseView.setOnClickListener {
             GuideDialog.show(
                 binding.btnPoptipSuccess,
                 GuideDialog.STAGE_LIGHT_TYPE.CIRCLE_OUTSIDE,
-                R.mipmap.img_tip_login
+                R.drawable.img_tip_login
             )
         }
         // 指定引导[矩形]
@@ -510,7 +510,7 @@ class DialogExampleFragment : BaseViewModelFragment<FragmentDialogExampleBinding
             GuideDialog.show(
                 binding.btnBottomSelectMenu,
                 GuideDialog.STAGE_LIGHT_TYPE.RECTANGLE,
-                R.mipmap.img_tip_login_clicktest
+                R.drawable.img_tip_login_clicktest
             ).setOnBackgroundMaskClickListener { dialog, v ->
                 return@setOnBackgroundMaskClickListener false
             }
