@@ -6,4 +6,5 @@ package com.suzhe.playdemo.utils
 object Constants {
     const val ID = "id"
     const val DATA = "data"
+    const val FRAGMENT_ID = "fragment_id"
 }

@@ -3,7 +3,6 @@ package com.suzhe.playdemo.component.main
 import android.content.Context
 import android.os.Bundle
 import android.util.AttributeSet
-import android.util.Log
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -37,13 +36,13 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
     private val tabTitles =
         arrayOf(
             "Discover",
-            "Video",
+            "Library",
             "Category",
             "Me"
         )
     private val tabIcons = intArrayOf(
         R.drawable.selector_tab_discovery,
-        R.drawable.selector_tab_video,
+        R.drawable.selector_tab_library,
         R.drawable.selector_tab_category,
         R.drawable.selector_tab_me
     )
@@ -83,7 +82,6 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
 
 
     private fun showGlobalActionPopup(v: View) {
-        Log.d("suzhe", "showGlobalActionPopup")
         // 1. 定义菜单项数据
         val listItems = arrayOf(
             "Change Skin"
