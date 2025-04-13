@@ -70,7 +70,7 @@
             android:layout_width="@dimen/d30"
             android:layout_height="@dimen/d30"
             android:layout_marginLeft="@dimen/padding_meddle"
-            android:src="@drawable/sun" />
+            android:src="@drawable/img_dialogx_demo_recommend" />
     </LinearLayout>
 
     <com.suzhe.playdemo.view.NestedScrollableHost

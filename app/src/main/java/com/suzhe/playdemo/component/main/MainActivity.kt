@@ -204,8 +204,8 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
             // 5. 设置全局按钮的布局参数：按钮置于右下角，并设置底部与右侧外边距
             val globalBtnLp = LayoutParams(btnSize, btnSize).apply {
                 gravity = Gravity.BOTTOM or Gravity.RIGHT
-                bottomMargin = QMUIDisplayHelper.dp2px(context, 60)
-                rightMargin = QMUIDisplayHelper.dp2px(context, 24)
+                bottomMargin = QMUIDisplayHelper.dp2px(context, 120)
+                rightMargin = QMUIDisplayHelper.dp2px(context, 20)
             }
 
             // 6. 设置按钮皮肤属性，支持动态换肤

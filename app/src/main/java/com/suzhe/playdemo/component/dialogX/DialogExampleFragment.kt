@@ -1,4 +1,4 @@
-package com.suzhe.playdemo.component.test
+package com.suzhe.playdemo.component.dialogX
 
 import android.content.ActivityNotFoundException
 import android.content.Intent

@@ -2,7 +2,7 @@ package com.suzhe.playdemo.component.library
 
 import androidx.fragment.app.Fragment
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
-import com.suzhe.playdemo.component.test.DialogExampleFragment
+import com.suzhe.playdemo.component.dialogX.DialogExampleFragment
 import com.suzhe.playdemo.databinding.ActivityLibraryContentBinding
 import com.suzhe.playdemo.utils.Constants.FRAGMENT_ID
 
