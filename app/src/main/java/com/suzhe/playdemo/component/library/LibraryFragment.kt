@@ -16,7 +16,7 @@ class LibraryFragment : BaseViewModelFragment<FragmentLibraryBinding>() {
         super.initListeners()
         binding.btnDialogX.setOnClickListener {
             val bundle = Bundle()
-            bundle.putString(FRAGMENT_ID, "DialogExampleFragment")
+            bundle.putString(FRAGMENT_ID, "DialogX")
             ActivityUtils.startActivity(bundle, LibraryContentActivity::class.java)
         }
     }
