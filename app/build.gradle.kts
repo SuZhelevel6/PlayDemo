@@ -32,7 +32,10 @@ android {
     buildTypes {
         release {
             isMinifyEnabled = false
-            proguardFiles(getDefaultProguardFile("proguard-android-optimize.txt"), "proguard-rules.pro")
+            proguardFiles(
+                getDefaultProguardFile("proguard-android-optimize.txt"),
+                "proguard-rules.pro"
+            )
         }
     }
     compileOptions {
@@ -73,11 +76,11 @@ dependencies {
 
     //UI框架
     //https://qmuiteam.com/android/get-started
-    implementation ("com.qmuiteam:qmui:2.1.0")
+    implementation("com.qmuiteam:qmui:2.1.0")
 
     //腾讯开源的高性能keyValue存储，用来替代系统的SharedPreferences
     //https://github.com/Tencent/MMKV
-    implementation ("com.tencent:mmkv-static:1.2.16")
+    implementation("com.tencent:mmkv-static:1.2.16")
 
     //爱奇艺开源的在android平台上面捕获异常的开源库
     //https://github.com/iqiyi/xCrash
@@ -86,25 +89,25 @@ dependencies {
     //apache common lang3工具包
     //提供了StringUtils等这样的类
     //http://commons.apache.org/proper/commons-lang/
-    implementation ("org.apache.commons:commons-lang3:3.8")
+    implementation("org.apache.commons:commons-lang3:3.8")
 
     //android常用工具类
     //https://github.com/Blankj/AndroidUtilCode
     //https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
-    implementation ("com.blankj:utilcodex:1.31.1")
+    implementation("com.blankj:utilcodex:1.31.1")
 
     // Dialog工具DialogX
     // https://github.com/kongzue/DialogX
     val dialogx_version = "0.0.50.beta33"
-    implementation ("com.github.kongzue.DialogX:DialogX:${dialogx_version}")
-    implementation ("com.github.kongzue.DialogX:DialogXIOSStyle:${dialogx_version}")
-    implementation ("com.github.kongzue.DialogX:DialogXKongzueStyle:${dialogx_version}")
-    implementation ("com.github.kongzue.DialogX:DialogXMIUIStyle:${dialogx_version}")
-    implementation ("com.github.kongzue.DialogX:DialogXMaterialYou:${dialogx_version}")
-    implementation ("com.kongzue.stacklabel:StackLabel:1.2.0")
+    implementation("com.github.kongzue.DialogX:DialogX:${dialogx_version}")
+    implementation("com.github.kongzue.DialogX:DialogXIOSStyle:${dialogx_version}")
+    implementation("com.github.kongzue.DialogX:DialogXKongzueStyle:${dialogx_version}")
+    implementation("com.github.kongzue.DialogX:DialogXMIUIStyle:${dialogx_version}")
+    implementation("com.github.kongzue.DialogX:DialogXMaterialYou:${dialogx_version}")
+    implementation("com.kongzue.stacklabel:StackLabel:1.2.0")
 
     //类似TabLayout的控件
     //https://github.com/angcyo/DslTabLayout
-    implementation ("com.github.angcyo.DslTablayout:TabLayout:3.5.3")
-    implementation ("com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3")
+    implementation("com.github.angcyo.DslTablayout:TabLayout:3.5.3")
+    implementation("com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3")
 }
