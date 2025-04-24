@@ -22,9 +22,12 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
-            android:label="组件库"
-            android:name=".component.library.LibraryContentActivity"
+            android:name=".component.recyclerView.RecyclerViewDemoActivity"
             android:exported="false" />
+        <activity
+            android:name=".component.library.LibraryContentActivity"
+            android:exported="false"
+            android:label="组件库" />
         <activity
             android:name=".component.splash.SplashActivity"
             android:exported="true">

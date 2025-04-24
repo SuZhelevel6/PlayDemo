@@ -110,4 +110,9 @@ dependencies {
     //https://github.com/angcyo/DslTabLayout
     implementation("com.github.angcyo.DslTablayout:TabLayout:3.5.3")
     implementation("com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3")
+
+    //DSLAdapter
+    implementation ("com.github.angcyo:DslAdapter:6.0.4")
+
+    implementation ("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
 }
