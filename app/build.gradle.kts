@@ -115,4 +115,9 @@ dependencies {
     implementation ("com.github.angcyo:DslAdapter:6.0.4")
 
     implementation ("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
+
+    // 自定义的Android下拉选择器组件
+    // https://blog.csdn.net/web_longboss/article/details/80820608
+    // https://github.com/jaredrummler/MaterialSpinner
+    implementation("com.jaredrummler:material-spinner:1.3.1")
 }

@@ -1,20 +1,19 @@
 package com.suzhe.playdemo.component.brvah
 
+import android.content.Intent
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.chad.library.adapter4.QuickAdapterHelper
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.fragment.BaseViewModelFragment
-import com.suzhe.playdemo.component.dialogX.DialogExampleFragment
+import com.suzhe.playdemo.component.brvah.animation.AnimationUseActivity
 import com.suzhe.playdemo.databinding.FragmentBrvahExampleBinding
-import com.suzhe.playdemo.databinding.FragmentDialogExampleBinding
 
 class BRVAHExampleFragment : BaseViewModelFragment<FragmentBrvahExampleBinding>() {
 
     private val itemData : ArrayList<BRVAHEntity>
         get() = arrayListOf(
             BRVAHEntity(sectionTitle = "BaseQuickAdapter 基础功能"),
-//            BRVAHEntity("Animation", AnimationUseActivity::class.java, R.mipmap.gv_animation),
+            BRVAHEntity("RV动画效果", AnimationUseActivity::class.java, R.drawable.icon_animation),
 //            BRVAHEntity(
 //                "Header/Footer",
 //                HeaderAndFooterUseActivity::class.java,
@@ -49,14 +48,22 @@ class BRVAHExampleFragment : BaseViewModelFragment<FragmentBrvahExampleBinding>(
 
     override fun initViews() {
         super.initViews()
-        // 一定要设置 layoutManager
-        binding.recyclerView.layoutManager = LinearLayoutManager(hostActivity)
+        // 不用设置 layoutManager，因为在 xml 中我已经设置了layoutManager
+//        binding.recyclerView.layoutManager = LinearLayoutManager(hostActivity)
         // 将 helper 中的适配器设置给 RecyclerView
         binding.recyclerView.adapter = helper.adapter
     }
 
-    override fun initDatum() {
-        super.initDatum()
+    override fun initListeners() {
+        super.initListeners()
+        // item 点击事件
+        mAdapter.setOnItemClickListener { adapter, _, position ->
+            val item = adapter.items[position]
+            if (!item.isSection) {
+                // 这个 Item 是 HomeEntity 类型，里面有 activity 属性
+                startActivity(Intent(hostActivity, item.activity))
+            }
+        }
     }
 
     companion object {
