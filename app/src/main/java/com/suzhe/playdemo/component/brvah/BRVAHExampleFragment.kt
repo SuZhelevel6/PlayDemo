@@ -6,6 +6,7 @@ import com.chad.library.adapter4.QuickAdapterHelper
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.fragment.BaseViewModelFragment
 import com.suzhe.playdemo.component.brvah.animation.AnimationUseActivity
+import com.suzhe.playdemo.component.brvah.header.HeaderUseActivity
 import com.suzhe.playdemo.databinding.FragmentBrvahExampleBinding
 
 class BRVAHExampleFragment : BaseViewModelFragment<FragmentBrvahExampleBinding>() {
@@ -14,11 +15,11 @@ class BRVAHExampleFragment : BaseViewModelFragment<FragmentBrvahExampleBinding>(
         get() = arrayListOf(
             BRVAHEntity(sectionTitle = "BaseQuickAdapter 基础功能"),
             BRVAHEntity("RV动画效果", AnimationUseActivity::class.java, R.drawable.icon_animation),
-//            BRVAHEntity(
-//                "Header/Footer",
-//                HeaderAndFooterUseActivity::class.java,
-//                R.mipmap.gv_header_and_footer
-//            ),
+            BRVAHEntity(
+                "Header/Footer",
+                HeaderUseActivity::class.java,
+                R.drawable.icon_header
+            ),
 //            BRVAHEntity("EmptyView", EmptyViewUseActivity::class.java, R.mipmap.gv_empty),
 //            BRVAHEntity("ItemClick", ItemClickActivity::class.java, R.mipmap.gv_item_click),
 //            BRVAHEntity("DataBinding", DataBindingUseActivity::class.java, R.mipmap.gv_databinding),

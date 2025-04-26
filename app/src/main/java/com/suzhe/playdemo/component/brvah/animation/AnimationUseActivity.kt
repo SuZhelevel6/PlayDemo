@@ -19,7 +19,7 @@ class AnimationUseActivity : BaseTitleActivity<ActivityAnimationUseBinding>() {
 
         binding.rv.adapter = mAnimationAdapter
 
-        mAnimationAdapter.submitList(DataServer.getStringItems())
+        mAnimationAdapter.submitList(DataServer.getStringItems100())
 
         initMenu()
 

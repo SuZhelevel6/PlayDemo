@@ -22,6 +22,9 @@
         android:theme="@style/AppTheme"
         tools:targetApi="31">
         <activity
+            android:name=".component.brvah.header.HeaderUseActivity"
+            android:exported="false" />
+        <activity
             android:name=".component.brvah.animation.AnimationUseActivity"
             android:exported="false"
             android:label="AnimationUseActivity" />
