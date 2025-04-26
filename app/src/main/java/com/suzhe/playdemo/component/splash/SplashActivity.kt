@@ -8,6 +8,7 @@ import com.blankj.utilcode.util.ToastUtils
 import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
+import com.suzhe.playdemo.component.main.MainActivity
 import com.suzhe.playdemo.component.recyclerView.RecyclerViewDemoActivity
 import com.suzhe.playdemo.databinding.ActivitySplashBinding
 import com.suzhe.playdemo.utils.PreferenceUtil
@@ -93,7 +94,7 @@ class SplashActivity : BaseViewModelActivity<ActivitySplashBinding>() {
 
 
     private fun prepareNext() {
-        ActivityUtils.startActivity(RecyclerViewDemoActivity::class.java)
+        ActivityUtils.startActivity(MainActivity::class.java)
         finish()
     }
 

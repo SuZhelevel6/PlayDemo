@@ -10,6 +10,7 @@ import com.suzhe.playdemo.component.recyclerView.RecyclerViewDemoActivity.Compan
 
 /**
  * BaseQuickAdapter 的泛型需要传入具体的数据类型，而不是 List
+ * 这里我有两种数据类型但是还是用了BaseQuickAdapter，其实更推荐使用的是BaseMultiItemAdapter
  * https://github.com/CymChad/BaseRecyclerViewAdapterHelper/wiki/BaseQuickAdapter
  */
 class BaseQuickDemoAdapter() : BaseQuickAdapter<Any, RecyclerView.ViewHolder>() {

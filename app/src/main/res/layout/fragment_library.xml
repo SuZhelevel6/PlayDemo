@@ -49,14 +49,11 @@
             android:paddingRight="15dp"
             android:paddingBottom="250dp">
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="15dp"
-                android:text="UI相关"
-                android:textColor="#dc000000"
-                android:textSize="14dp"
-                android:textStyle="bold" />
+            <include
+                android:id="@+id/header1"
+                layout="@layout/item_text"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"/>
 
             <com.kongzue.stacklabelview.StackLayout
                 android:layout_width="match_parent"
@@ -74,6 +71,18 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="DialogX" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnRecyclerView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="RecyclerView" />
+
+                <com.google.android.material.button.MaterialButton
+                    android:id="@+id/btnBRVAH"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="BRVAH" />
 
             </com.kongzue.stacklabelview.StackLayout>
 

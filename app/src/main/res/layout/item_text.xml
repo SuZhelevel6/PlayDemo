@@ -38,7 +38,8 @@
             android:paddingRight="10dp"
             android:text="more >"
             android:textColor="@color/light_blue_600"
-            android:textSize="18sp" />
+            android:textSize="18sp"
+            android:visibility="invisible"/>
     </LinearLayout>
 
 </androidx.cardview.widget.CardView>

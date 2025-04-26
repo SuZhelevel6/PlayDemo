@@ -3,6 +3,7 @@ package com.suzhe.playdemo.component.library
 import androidx.fragment.app.Fragment
 import com.suzhe.playdemo.base.activity.BaseTitleActivity
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
+import com.suzhe.playdemo.component.brvah.BRVAHExampleFragment
 import com.suzhe.playdemo.component.dialogX.DialogExampleFragment
 import com.suzhe.playdemo.databinding.ActivityLibraryContentBinding
 import com.suzhe.playdemo.utils.Constants.FRAGMENT_ID
@@ -22,6 +23,7 @@ class LibraryContentActivity : BaseTitleActivity<ActivityLibraryContentBinding>(
 
         fragment = when (fragmentId) {
             "DialogX" -> DialogExampleFragment.newInstance()
+            "BRVAH" -> BRVAHExampleFragment.newInstance()
             else -> DialogExampleFragment.newInstance()
         }
 
