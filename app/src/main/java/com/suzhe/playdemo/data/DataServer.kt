@@ -19,4 +19,12 @@ object DataServer {
         return itemList
     }
 
+    fun getStringItems(num: Int): ArrayList<String> {
+        val itemList = ArrayList<String>()
+        for (i in 1..num) {
+            itemList.add("Item" + i)
+        }
+        return itemList
+    }
+
 }
