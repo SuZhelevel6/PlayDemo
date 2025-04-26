@@ -21,20 +21,7 @@ class TextViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(text: String) {
-        binding.textView.text = text
-    }
-}
-
-// 图片条目的 ViewHolder，负责绑定图片资源
-class ImageViewHolder(
-    parent: ViewGroup,
-    private val binding: ItemImageBinding = ItemImageBinding.inflate(
-        LayoutInflater.from(parent.context), parent, false
-    )
-) : RecyclerView.ViewHolder(binding.root) {
-
-    fun bind(imageRes: Int) {
-        binding.imageView.setImageResource(imageRes)
+        binding.header.text = text
     }
 }
 
@@ -47,7 +34,7 @@ class ImageTextViewHolder(
 ) : RecyclerView.ViewHolder(binding.root) {
 
     fun bind(item: Pair<Int, String>) {
-        binding.imageViewLeft.setImageResource(item.first)
-        binding.textViewRight.text = item.second
+        binding.icon.setImageResource(item.first)
+        binding.textView.text = item.second
     }
 }

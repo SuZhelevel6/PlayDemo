@@ -37,8 +37,7 @@ class RecyclerViewDemoActivity : BaseViewModelActivity<ActivityRecyclerViewDemoB
     private val itemList = mutableListOf<Any>(
         "Text Item 1",                      // 文本条目
         "Text Item 2",                      // 文本条目
-        android.R.drawable.btn_star_big_on,  // 图片条目
-        Pair(android.R.drawable.btn_star_big_off, "Image and Text Item 1"), // 图片和文本条目
+        Pair(android.R.drawable.btn_star_big_on, "Image and Text Item 1"), // 图片和文本条目
         "Text Item 3",                      // 文本条目
         Pair(R.drawable.ic_launcher_background, "Image and Text Item 2"),  // 图片和文本条目
         "Text Item 4",                      // 文本条目
@@ -166,7 +165,6 @@ class RecyclerViewDemoActivity : BaseViewModelActivity<ActivityRecyclerViewDemoB
     // 定义条目的类型常量
     companion object {
         const val TYPE_TEXT = 0            // 文本条目类型
-        const val TYPE_IMAGE = 1           // 图片条目类型
-        const val TYPE_IMAGE_TEXT = 2      // 混合条目类型
+        const val TYPE_IMAGE_TEXT = 1      // 混合条目类型
     }
 }
