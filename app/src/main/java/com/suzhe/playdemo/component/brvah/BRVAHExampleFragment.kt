@@ -7,6 +7,7 @@ import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.fragment.BaseViewModelFragment
 import com.suzhe.playdemo.component.brvah.animation.AnimationUseActivity
 import com.suzhe.playdemo.component.brvah.autoLoad.AutoLoadMoreRefreshUseActivity
+import com.suzhe.playdemo.component.brvah.drag.DragAndSwipeUseActivity
 import com.suzhe.playdemo.component.brvah.empty.EmptyViewUseActivity
 import com.suzhe.playdemo.component.brvah.header.HeaderUseActivity
 import com.suzhe.playdemo.databinding.FragmentBrvahExampleBinding
@@ -34,7 +35,7 @@ class BRVAHExampleFragment : BaseViewModelFragment<FragmentBrvahExampleBinding>(
                 R.drawable.icon_load
             ),
 //            BRVAHEntity("LoadMore", NoAutoAutoLoadMoreRefreshUseActivity::class.java, R.mipmap.gv_pulltorefresh),
-//            BRVAHEntity("DragAndSwipe", DragAndSwipeUseActivity::class.java, R.mipmap.gv_drag_and_swipe),
+            BRVAHEntity("DragAndSwipe", DragAndSwipeUseActivity::class.java, R.drawable.icon_drag),
 //            BRVAHEntity("UpFetch", UpFetchUseActivity::class.java, R.drawable.gv_up_fetch),
 
 
