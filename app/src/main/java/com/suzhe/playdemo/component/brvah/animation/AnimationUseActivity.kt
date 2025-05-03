@@ -1,5 +1,6 @@
 package com.suzhe.playdemo.component.brvah.animation
 
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter4.BaseQuickAdapter
 import com.suzhe.playdemo.base.activity.BaseTitleActivity
 import com.suzhe.playdemo.data.DataServer
@@ -7,7 +8,8 @@ import com.suzhe.playdemo.databinding.ActivityAnimationUseBinding
 
 class AnimationUseActivity : BaseTitleActivity<ActivityAnimationUseBinding>() {
 
-    private val mAnimationAdapter: AnimationAdapter = AnimationAdapter().apply {
+    private lateinit var recyclerView: RecyclerView
+    private val mAdapter: AnimationAdapter = AnimationAdapter().apply {
         // 打开 Adapter 的动画
         animationEnable = true
         // 是否是首次显示时候加载动画
@@ -16,13 +18,22 @@ class AnimationUseActivity : BaseTitleActivity<ActivityAnimationUseBinding>() {
 
     override fun initViews() {
         super.initViews()
-
-        binding.rv.adapter = mAnimationAdapter
-
-        mAnimationAdapter.submitList(DataServer.getStringItems100())
-
+        // 初始化 RecyclerView
+        initRecyclerView()
+        // 初始化下拉菜单
         initMenu()
+    }
 
+    override fun initDatum() {
+        super.initDatum()
+        // 设置数据
+        mAdapter.submitList(DataServer.getStringItems100())
+    }
+
+    fun initRecyclerView() {
+        recyclerView = binding.rv
+        recyclerView.adapter = mAdapter
+        // 无需设置布局管理器，因为 xml 中已经设置了
     }
 
     /**
@@ -39,14 +50,14 @@ class AnimationUseActivity : BaseTitleActivity<ActivityAnimationUseBinding>() {
         )
         binding.spinner.setOnItemSelectedListener { _, position, _, _ ->
             when (position) {
-                0 -> mAnimationAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.AlphaIn)
-                1 -> mAnimationAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.ScaleIn)
-                2 -> mAnimationAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.SlideInBottom)
-                3 -> mAnimationAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.SlideInLeft)
-                4 -> mAnimationAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.SlideInRight)
+                0 -> mAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.AlphaIn)
+                1 -> mAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.ScaleIn)
+                2 -> mAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.SlideInBottom)
+                3 -> mAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.SlideInLeft)
+                4 -> mAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.SlideInRight)
                 else -> {}
             }
-            mAnimationAdapter.notifyDataSetChanged()
+            mAdapter.notifyDataSetChanged()
         }
     }
 }

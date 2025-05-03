@@ -17,7 +17,5 @@ class FooterAdapter(
         return QuickViewHolder(R.layout.top_view, parent)
     }
 
-    override fun onBindViewHolder(holder: QuickViewHolder, item: Any?) {
-
-    }
+    override fun onBindViewHolder(holder: QuickViewHolder, item: Any?) {}
 }

@@ -18,7 +18,5 @@ class HeaderAdapter : BaseSingleItemAdapter<Any, HeaderAdapter.VH>() {
         return VH(view)
     }
 
-    override fun onBindViewHolder(holder: VH, item: Any?) {
-
-    }
+    override fun onBindViewHolder(holder: VH, item: Any?) {}
 }

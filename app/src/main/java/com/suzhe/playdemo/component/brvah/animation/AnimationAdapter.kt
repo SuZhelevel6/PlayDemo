@@ -8,6 +8,13 @@ import com.chad.library.adapter4.viewholder.QuickViewHolder
 import com.kongzue.dialogx.dialogs.PopTip
 import com.suzhe.playdemo.R
 
+/**
+ * 使用BaseQuickAdapter的注意点
+ * 1. 如果 ViewHolder 很简单，可以直接使用 QuickViewHolder 并指定视图
+ * 2. 不需要 getItemCount 方法
+ * 3. 传入数据可以使用参数传递，也可以使用 submitList 方法
+ * 4. BaseQuickAdapter 泛型参数的第一个参数是 具体的数据类型 而不是 List
+ */
 class AnimationAdapter() : BaseQuickAdapter<String, QuickViewHolder>() {
 
     override fun onCreateViewHolder(
@@ -28,5 +35,4 @@ class AnimationAdapter() : BaseQuickAdapter<String, QuickViewHolder>() {
             PopTip.show("点击了 $item")
         }
     }
-
 }

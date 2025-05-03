@@ -23,8 +23,8 @@ import com.suzhe.playdemo.utils.vibrate
 
 class DragAndSwipeUseActivity : BaseTitleActivity<ActivityDragAndSwipeUseBinding>() {
 
+    private lateinit var recyclerView: RecyclerView
     private val mAdapter: DragAndSwipeAdapter = DragAndSwipeAdapter()
-
     private val helper by lazy(LazyThreadSafetyMode.NONE) {
         QuickAdapterHelper.Builder(mAdapter)
             .build()
@@ -39,9 +39,9 @@ class DragAndSwipeUseActivity : BaseTitleActivity<ActivityDragAndSwipeUseBinding
 
     override fun initViews() {
         super.initViews()
-
-        binding.rv.adapter = helper.adapter
-        binding.rv.layoutManager = LinearLayoutManager(this)
+        recyclerView = binding.rv
+        recyclerView.adapter = helper.adapter
+        recyclerView.layoutManager = LinearLayoutManager(this)
 
         initMenu()
     }
@@ -71,7 +71,8 @@ class DragAndSwipeUseActivity : BaseTitleActivity<ActivityDragAndSwipeUseBinding
                         )
                     }
                     v.duration = 300
-                    v.start()
+                    // 这里的动画效果会和我的背景设置冲突
+//                    v.start()
                 }
             }
 
@@ -100,7 +101,7 @@ class DragAndSwipeUseActivity : BaseTitleActivity<ActivityDragAndSwipeUseBinding
                         )
                     }
                     v.duration = 300
-                    v.start()
+//                    v.start()
                 }
             }
         }
@@ -140,7 +141,7 @@ class DragAndSwipeUseActivity : BaseTitleActivity<ActivityDragAndSwipeUseBinding
         }
 
         // 滑动事件
-        quickDragAndSwipe.attachToRecyclerView(binding.rv)
+        quickDragAndSwipe.attachToRecyclerView(recyclerView)
             .setDataCallback(mAdapter)
             .setItemDragListener(listener)
             .setItemSwipeListener(swipeListener)
@@ -163,9 +164,9 @@ class DragAndSwipeUseActivity : BaseTitleActivity<ActivityDragAndSwipeUseBinding
         )
         binding.spinner.setOnItemSelectedListener { _, position, _, _ ->
             when (position) {
-                0 -> binding.rv.layoutManager = LinearLayoutManager(this)
-                1 -> binding.rv.layoutManager = GridLayoutManager(this, 2)
-                2 -> binding.rv.layoutManager =
+                0 -> recyclerView.layoutManager = LinearLayoutManager(this)
+                1 -> recyclerView.layoutManager = GridLayoutManager(this, 2)
+                2 -> recyclerView.layoutManager =
                     StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
 
                 else -> {}

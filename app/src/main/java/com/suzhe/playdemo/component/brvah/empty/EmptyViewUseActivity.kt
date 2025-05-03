@@ -2,6 +2,7 @@ package com.suzhe.playdemo.component.brvah.empty
 
 import android.view.View
 import android.widget.FrameLayout
+import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter4.QuickAdapterHelper
 import com.kongzue.dialogx.dialogs.PopTip
 import com.kongzue.dialogx.dialogs.WaitDialog
@@ -15,10 +16,10 @@ class EmptyViewUseActivity : BaseTitleActivity<ActivityEmptyViewUseBinding>() {
 
     private var status = false
 
-    private val mAnimationAdapter: AnimationAdapter = AnimationAdapter()
-
+    private lateinit var recyclerView: RecyclerView
+    private val mAdapter: AnimationAdapter = AnimationAdapter()
     private val helper by lazy(LazyThreadSafetyMode.NONE) {
-        QuickAdapterHelper.Builder(mAnimationAdapter)
+        QuickAdapterHelper.Builder(mAdapter)
             .build()
     }
 
@@ -31,11 +32,11 @@ class EmptyViewUseActivity : BaseTitleActivity<ActivityEmptyViewUseBinding>() {
 
     override fun initViews() {
         super.initViews()
-
-        binding.rv.adapter = helper.adapter
+        recyclerView = binding.rv
+        recyclerView.adapter = helper.adapter
 
         // 打开空布局功能
-        mAnimationAdapter.isStateViewEnable = true
+        mAdapter.isStateViewEnable = true
 
         onRefresh()
     }
@@ -61,16 +62,16 @@ class EmptyViewUseActivity : BaseTitleActivity<ActivityEmptyViewUseBinding>() {
             }
 
         // 加载完成
-        binding.rv.postDelayed({
+        recyclerView.postDelayed({
 
             waitDialog.doDismiss()
 
             if (status) { // 模拟网络错误
                 // 方式二：传入View
-                mAnimationAdapter.submitList(null)
-                mAnimationAdapter.stateView = errorView
+                mAdapter.submitList(null)
+                mAdapter.stateView = errorView
             } else {
-                mAnimationAdapter.submitList(DataServer.getStringItems5())
+                mAdapter.submitList(DataServer.getStringItems5())
             }
             status = !status
         }, 1000)
