@@ -9,6 +9,7 @@ import com.suzhe.playdemo.component.brvah.animation.AnimationUseActivity
 import com.suzhe.playdemo.component.brvah.autoLoad.AutoLoadMoreRefreshUseActivity
 import com.suzhe.playdemo.component.brvah.drag.DragAndSwipeUseActivity
 import com.suzhe.playdemo.component.brvah.empty.EmptyViewUseActivity
+import com.suzhe.playdemo.component.brvah.group.GroupDemoUseActivity
 import com.suzhe.playdemo.component.brvah.header.HeaderUseActivity
 import com.suzhe.playdemo.databinding.FragmentBrvahExampleBinding
 
@@ -40,7 +41,7 @@ class BRVAHExampleFragment : BaseViewModelFragment<FragmentBrvahExampleBinding>(
 
 
             BRVAHEntity(sectionTitle = "场景演示"),
-//            BRVAHEntity("Group（ConcatAdapter）", GroupDemoActivity::class.java, R.mipmap.gv_animation),
+            BRVAHEntity("Group", GroupDemoUseActivity::class.java, R.drawable.icon_list),
         )
 
     private val mAdapter by lazy(LazyThreadSafetyMode.NONE) {
