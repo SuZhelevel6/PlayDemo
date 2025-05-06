@@ -46,7 +46,9 @@ class AnimationUseActivity : BaseTitleActivity<ActivityAnimationUseBinding>() {
             "ScaleIn",
             "SlideInBottom",
             "SlideInLeft",
-            "SlideInRight"
+            "SlideInRight",
+            "Custom1",
+            "Custom2"
         )
         binding.spinner.setOnItemSelectedListener { _, position, _, _ ->
             when (position) {
@@ -55,6 +57,8 @@ class AnimationUseActivity : BaseTitleActivity<ActivityAnimationUseBinding>() {
                 2 -> mAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.SlideInBottom)
                 3 -> mAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.SlideInLeft)
                 4 -> mAdapter.setItemAnimation(BaseQuickAdapter.AnimationType.SlideInRight)
+                5 -> mAdapter.itemAnimation = CustomAnimation1()
+                6 -> mAdapter.itemAnimation = CustomAnimation2()
                 else -> {}
             }
             mAdapter.notifyDataSetChanged()
