@@ -1,5 +1,8 @@
 package com.suzhe.playdemo.component.brvah.animation
 
+import ImmediateIndexScroller
+import SmoothIndexScroller
+import SnapPreference
 import androidx.recyclerview.widget.RecyclerView
 import com.chad.library.adapter4.BaseQuickAdapter
 import com.suzhe.playdemo.base.activity.BaseTitleActivity
@@ -28,6 +31,20 @@ class AnimationUseActivity : BaseTitleActivity<ActivityAnimationUseBinding>() {
         super.initDatum()
         // 设置数据
         mAdapter.submitList(DataServer.getStringItems100())
+    }
+
+    override fun initListeners() {
+        super.initListeners()
+        binding.btnTest.setOnClickListener {
+            // 平滑滚动到指定位置并居中对齐
+            val smoothIndexScroller = SmoothIndexScroller(recyclerView)
+            smoothIndexScroller.scrollToPosition(20, SnapPreference.SNAP_TO_CENTER)
+
+            // 即时滚动到指定位置并居中对齐
+            val immediateIndexScroller = ImmediateIndexScroller(recyclerView)
+            immediateIndexScroller.scrollToPosition(20, SnapPreference.SNAP_TO_CENTER)
+        }
+
     }
 
     fun initRecyclerView() {
