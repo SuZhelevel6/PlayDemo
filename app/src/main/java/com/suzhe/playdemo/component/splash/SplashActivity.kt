@@ -9,7 +9,6 @@ import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
 import com.suzhe.playdemo.component.main.MainActivity
-import com.suzhe.playdemo.component.recyclerView.RecyclerViewDemoActivity
 import com.suzhe.playdemo.databinding.ActivitySplashBinding
 import com.suzhe.playdemo.utils.PreferenceUtil
 import com.suzhe.playdemo.utils.SuperDarkUtil

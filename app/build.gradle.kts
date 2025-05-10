@@ -120,4 +120,8 @@ dependencies {
     // https://blog.csdn.net/web_longboss/article/details/80820608
     // https://github.com/jaredrummler/MaterialSpinner
     implementation("com.jaredrummler:material-spinner:1.3.1")
+
+    //圆形指示器
+    //https://github.com/ongakuer/CircleIndicator
+    implementation("me.relex:circleindicator:2.1.6")
 }
