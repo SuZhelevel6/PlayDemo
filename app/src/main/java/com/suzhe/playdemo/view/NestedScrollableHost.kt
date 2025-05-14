@@ -7,7 +7,6 @@ import android.view.View
 import android.view.ViewConfiguration
 import android.widget.FrameLayout
 import androidx.viewpager2.widget.ViewPager2
-import androidx.viewpager2.widget.ViewPager2.ORIENTATION_HORIZONTAL
 import kotlin.math.absoluteValue
 import kotlin.math.sign
 
@@ -57,39 +56,42 @@ class NestedScrollableHost : FrameLayout {
         return super.onInterceptTouchEvent(e)
     }
 
+    /**
+     * 滑动冲突处理核心逻辑（网页6内部拦截法的典型实现）
+     */
     private fun handleInterceptTouchEvent(e: MotionEvent) {
-        val orientation = parentViewPager?.orientation ?: return
+        val orientation = parentViewPager?.orientation ?: return  // 获取ViewPager2滑动方向
 
-        // Early return if child can't scroll in same direction as parent
-        if (!canChildScroll(orientation, -1f) && !canChildScroll(orientation, 1f)) {
-            return
-        }
+        // 若子视图完全无法滚动，无需处理冲突（如子视图内容不足）
+        if (!canChildScroll(orientation, -1f) && !canChildScroll(orientation, 1f)) return
 
-        if (e.action == MotionEvent.ACTION_DOWN) {
-            initialX = e.x
-            initialY = e.y
-            parent.requestDisallowInterceptTouchEvent(true)
-        } else if (e.action == MotionEvent.ACTION_MOVE) {
-            val dx = e.x - initialX
-            val dy = e.y - initialY
-            val isVpHorizontal = orientation == ORIENTATION_HORIZONTAL
+        when (e.action) {
+            MotionEvent.ACTION_DOWN -> {
+                initialX = e.x
+                initialY = e.y
+                parent.requestDisallowInterceptTouchEvent(true)  // 初始禁止父容器拦截
+            }
 
-            // assuming ViewPager2 touch-slop is 2x touch-slop of child
-            val scaledDx = dx.absoluteValue * if (isVpHorizontal) .5f else 1f
-            val scaledDy = dy.absoluteValue * if (isVpHorizontal) 1f else .5f
+            MotionEvent.ACTION_MOVE -> {
+                val dx = e.x - initialX  // X轴滑动距离
+                val dy = e.y - initialY  // Y轴滑动距离
+                val isVpHorizontal = orientation == ViewPager2.ORIENTATION_HORIZONTAL
 
-            if (scaledDx > touchSlop || scaledDy > touchSlop) {
-                if (isVpHorizontal == (scaledDy > scaledDx)) {
-                    // Gesture is perpendicular, allow all parents to intercept
-                    parent.requestDisallowInterceptTouchEvent(false)
-                } else {
-                    // Gesture is parallel, query child if movement in that direction is possible
-                    if (canChildScroll(orientation, if (isVpHorizontal) dx else dy)) {
-                        // Child can scroll, disallow all parents to intercept
-                        parent.requestDisallowInterceptTouchEvent(true)
+                // 优化方向判断（通过缩放敏感度区分主次方向）
+                val scaledDx =
+                    dx.absoluteValue * if (isVpHorizontal) 0.5f else 1f  // 横向ViewPager降低横向敏感度
+                val scaledDy =
+                    dy.absoluteValue * if (isVpHorizontal) 1f else 0.5f  // 纵向ViewPager降低纵向敏感度
+
+                // 当任一方向超过滑动阈值时判断处理（阈值判断）
+                if (scaledDx > touchSlop || scaledDy > touchSlop) {
+                    if (isVpHorizontal == (scaledDy > scaledDx)) {
+                        // 手势方向与ViewPager2方向垂直（如横向ViewPager中的上下滑动）
+                        parent.requestDisallowInterceptTouchEvent(false)  // 允许父容器拦截（传递非主方向事件）
                     } else {
-                        // Child cannot scroll, allow all parents to intercept
-                        parent.requestDisallowInterceptTouchEvent(false)
+                        // 手势方向与ViewPager2方向平行（需判断子视图滚动能力）
+                        val canScroll = canChildScroll(orientation, if (isVpHorizontal) dx else dy)
+                        parent.requestDisallowInterceptTouchEvent(canScroll)  // 动态调整拦截策略
                     }
                 }
             }

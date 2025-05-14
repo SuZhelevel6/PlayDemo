@@ -239,61 +239,27 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
             val x = event.x
             val y = event.y
             when (event.action) {
+                // 1. 按下时记录位置，用来判断是否是拖动
                 MotionEvent.ACTION_DOWN -> {
-                    // 1. 记录按下时坐标，判断是否在全局按钮内
                     isTouchDownInGlobalBtn = isDownInGlobalBtn(x, y)
                     touchDownX = x
                     lastTouchX = x
                     touchDownY = y
                     lastTouchY = y
                 }
-
+                // 2. 拖动时判断是否在全局按钮范围内
                 MotionEvent.ACTION_MOVE -> {
-                    // 2. 如果尚未开始拖动，检测是否滑动超过touchSlop阈值以启动拖动
                     if (!isDragging && isTouchDownInGlobalBtn) {
                         val dx = (x - touchDownX).toInt()
                         val dy = (y - touchDownY).toInt()
-                        // 新手提示：使用欧几里得距离判断滑动幅度
+                        // 3. 当移动距离超过触摸最小滑动距离时，设置为拖动状态
                         if (Math.sqrt(dx * dx + dy * dy.toDouble()) > touchSlop) {
                             isDragging = true
                         }
                     }
-                    // 3. 若处于拖动状态，计算位移并更新全局按钮位置，同时进行边界检测
-                    if (isDragging) {
-                        val dx = (x - lastTouchX).toInt()
-                        val dy = (y - lastTouchY).toInt()
-                        val gx = globalBtn.left
-                        val gy = globalBtn.top
-                        val gw = globalBtn.width
-                        val w = width
-                        val gh = globalBtn.height
-                        val h = height
-                        // 边界检测：左侧与右侧
-                        val newDx =
-                            if (gx + dx < 0) -gx else if (gx + dx + gw > w) w - gw - gx else dx
-                        // 边界检测：顶部与底部
-                        val newDy =
-                            if (gy + dy < 0) -gy else if (gy + dy + gh > h) h - gh - gy else dy
-                        // 更新全局按钮的水平与垂直偏移
-                        globalBtnOffsetHelper.setLeftAndRightOffset(
-                            globalBtnOffsetHelper.leftAndRightOffset + newDx
-                        )
-                        globalBtnOffsetHelper.setTopAndBottomOffset(
-                            globalBtnOffsetHelper.topAndBottomOffset + newDy
-                        )
-                    }
-                    // 4. 更新最后触摸坐标
-                    lastTouchX = x
-                    lastTouchY = y
-                }
-
-                MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
-                    // 5. 触摸结束，重置拖动状态与触摸标记
-                    isDragging = false
-                    isTouchDownInGlobalBtn = false
                 }
             }
-            // 返回是否拦截事件（若正在拖动则拦截）
+            // 4. 如果处于拖动状态，拦截触摸事件
             return isDragging
         }
 
@@ -306,24 +272,9 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
             val x = event.x
             val y = event.y
             when (event.action) {
-                MotionEvent.ACTION_DOWN -> {
-                    // 记录按下时坐标及是否在全局按钮内
-                    isTouchDownInGlobalBtn = isDownInGlobalBtn(x, y)
-                    touchDownX = x
-                    lastTouchX = x
-                    touchDownY = y
-                    lastTouchY = y
-                }
-
+                // 1. 处理移动事件，更新按钮位置
                 MotionEvent.ACTION_MOVE -> {
-                    if (!isDragging && isTouchDownInGlobalBtn) {
-                        val dx = (x - touchDownX).toInt()
-                        val dy = (y - touchDownY).toInt()
-                        if (Math.sqrt(dx * dx + dy * dy.toDouble()) > touchSlop) {
-                            isDragging = true
-                        }
-                    }
-                    if (isDragging) {
+                    if (isDragging) { // 确保仅在拖动状态下处理
                         val dx = (x - lastTouchX).toInt()
                         val dy = (y - lastTouchY).toInt()
                         val gx = globalBtn.left
@@ -336,23 +287,18 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
                             if (gx + dx < 0) -gx else if (gx + dx + gw > w) w - gw - gx else dx
                         val newDy =
                             if (gy + dy < 0) -gy else if (gy + dy + gh > h) h - gh - gy else dy
-                        globalBtnOffsetHelper.setLeftAndRightOffset(
-                            globalBtnOffsetHelper.leftAndRightOffset + newDx
-                        )
-                        globalBtnOffsetHelper.setTopAndBottomOffset(
-                            globalBtnOffsetHelper.topAndBottomOffset + newDy
-                        )
+                        globalBtnOffsetHelper.setLeftAndRightOffset(globalBtnOffsetHelper.leftAndRightOffset + newDx)
+                        globalBtnOffsetHelper.setTopAndBottomOffset(globalBtnOffsetHelper.topAndBottomOffset + newDy)
+                        lastTouchX = x
+                        lastTouchY = y
                     }
-                    lastTouchX = x
-                    lastTouchY = y
                 }
-
-                MotionEvent.ACTION_CANCEL, MotionEvent.ACTION_UP -> {
+                // 2. 处理抬起和取消事件，取消拖动状态
+                MotionEvent.ACTION_UP, MotionEvent.ACTION_CANCEL -> {
                     isDragging = false
                     isTouchDownInGlobalBtn = false
                 }
             }
-            // 返回true表示事件已被处理；若拖动则拦截事件
             return isDragging || super.onTouchEvent(event)
         }
         //endregion
