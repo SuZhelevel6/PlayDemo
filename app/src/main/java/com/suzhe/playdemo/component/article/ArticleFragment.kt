@@ -15,8 +15,9 @@ class ArticleFragment(private var content: String) :
         super.initViews()
         binding.webview.apply {
             settings.javaScriptEnabled = true
+            settings.domStorageEnabled = true
             webViewClient = WebViewClient()
-            loadUrl("https://www.baidu.com/")
+            loadUrl("https://suzhelevel6.github.io/suzhe_blog/")
         }
     }
 }

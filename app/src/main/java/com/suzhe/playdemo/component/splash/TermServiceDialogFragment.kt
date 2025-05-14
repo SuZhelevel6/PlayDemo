@@ -62,15 +62,10 @@ class TermServiceDialogFragment : BaseViewModelDialogFragment<FragmentDialogTerm
     }
 
     companion object {
-        /**
-         * 显示对话框
-         */
-        fun show(fragmentManager: FragmentManager, onAgreementClickListener: View.OnClickListener) {
-            val dialogFragment = TermServiceDialogFragment()
-
-            dialogFragment.onAgreementClickListener = onAgreementClickListener
-
-            dialogFragment.show(fragmentManager, "TermServiceDialogFragment")
+        fun show(fm: FragmentManager, listener: View.OnClickListener) {
+            TermServiceDialogFragment().apply {
+                onAgreementClickListener = listener
+            }.show(fm, "TermServiceDialogFragment")
         }
     }
 }
