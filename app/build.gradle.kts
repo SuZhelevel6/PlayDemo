@@ -112,9 +112,9 @@ dependencies {
     implementation("com.github.angcyo.DslTablayout:ViewPager2Delegate:3.5.3")
 
     //DSLAdapter
-    implementation ("com.github.angcyo:DslAdapter:6.0.4")
+    implementation("com.github.angcyo:DslAdapter:6.0.4")
 
-    implementation ("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
+    implementation("io.github.cymchad:BaseRecyclerViewAdapterHelper4:4.1.4")
 
     // 自定义的Android下拉选择器组件
     // https://blog.csdn.net/web_longboss/article/details/80820608
@@ -124,4 +124,8 @@ dependencies {
     //圆形指示器
     //https://github.com/ongakuer/CircleIndicator
     implementation("me.relex:circleindicator:2.1.6")
+
+    //webview进度条
+    //https://github.com/youlookwhat/WebProgress
+    implementation("com.github.youlookwhat:WebProgress:1.2.0")
 }
