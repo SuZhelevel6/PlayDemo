@@ -13,7 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:contentScrim="?attr/colorPrimary"
-            app:expandedTitleTextColor="@color/black"
+            app:expandedTitleTextColor="?android:attr/textColorPrimary"
             app:layout_scrollFlags="scroll|exitUntilCollapsed">
             <!-- 将原本属于Toolbar的属性app:layout_scrollFlags="scroll|exitUntilCollapsed"移到了CollapsingToolbarLayout上-->
             <!-- layout_collapseMode="parallax" : 当Toolbar折叠时，Toolbar的内容会向上移动，直到完全隐藏为止。 -->
@@ -45,46 +45,77 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:orientation="vertical"
-            android:paddingLeft="15dp"
-            android:paddingRight="15dp"
-            android:paddingBottom="250dp">
+            android:padding="16dp">
 
-            <include
-                android:id="@+id/header1"
-                layout="@layout/item_text"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"/>
-
-            <com.kongzue.stacklabelview.StackLayout
+            <TextView
+                android:id="@+id/tvLibraryHeader"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal">
+                android:textAppearance="?attr/textAppearanceHeadline6"
+                android:textColor="?android:attr/textColorPrimary"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="8dp"
+                android:gravity="start" />
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
 
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnQMUI"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="QMUI" />
 
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnDialogX"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="DialogX" />
 
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnRecyclerView"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="RecyclerView" />
 
+            </com.google.android.material.card.MaterialCardView>
+
+            <com.google.android.material.card.MaterialCardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="8dp">
+
                 <com.google.android.material.button.MaterialButton
                     android:id="@+id/btnBRVAH"
+                    style="@style/Widget.MaterialComponents.Button.OutlinedButton"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="BRVAH" />
 
-            </com.kongzue.stacklabelview.StackLayout>
+            </com.google.android.material.card.MaterialCardView>
 
         </LinearLayout>
 

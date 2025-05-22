@@ -19,7 +19,7 @@ class LibraryFragment : BaseViewModelFragment<FragmentLibraryBinding>() {
         binding.apply {
 
             // 标题栏
-            header1.header.text = "UI 相关"
+            tvLibraryHeader.text = "UI 相关"
 
             // DialogX 按钮
             btnDialogX.setOnClickListener {
