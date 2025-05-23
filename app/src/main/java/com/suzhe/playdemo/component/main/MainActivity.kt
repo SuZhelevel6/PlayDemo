@@ -16,6 +16,10 @@ import androidx.fragment.app.FragmentContainerView
 import androidx.viewpager2.widget.ViewPager2
 import com.angcyo.tablayout.DslTabLayout
 import com.angcyo.tablayout.delegate2.ViewPager2Delegate
+import com.kongzue.dialogx.dialogs.MessageMenu
+import com.kongzue.dialogx.dialogs.PopTip
+import com.kongzue.dialogx.interfaces.OnMenuButtonClickListener
+import com.kongzue.dialogx.interfaces.OnMenuItemSelectListener
 import com.qmuiteam.qmui.util.QMUIDisplayHelper
 import com.qmuiteam.qmui.util.QMUIViewOffsetHelper
 import com.qmuiteam.qmui.widget.QMUIRadiusImageView2
@@ -97,15 +101,26 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
             if (i == 0) {
                 // 定义皮肤选项
                 val items = arrayOf("蓝色（默认）", "黑色", "白色")
-                // 构建 AlertDialog
-                val builder = android.app.AlertDialog.Builder(context)
-                builder.setTitle("选择皮肤")
-                    .setItems(items) { dialog, which ->
-                        // 这里可以添加切换皮肤的逻辑
-                        dialog.dismiss()
-                    }
-                val dialog = builder.create()
-                dialog.show()
+
+                var selectMenuIndex = 0
+                MessageMenu.show(items)
+                    .setMessage("请选择你喜欢的主题")
+                    .setTitle("皮肤选择器")
+                    .setOnMenuItemClickListener(object : OnMenuItemSelectListener<MessageMenu>() {
+                        override fun onOneItemSelect(
+                            dialog: MessageMenu,
+                            text: CharSequence,
+                            index: Int,
+                            select: Boolean
+                        ) {
+                            selectMenuIndex = index
+                        }
+                    })
+                    .setCancelButton("确认", OnMenuButtonClickListener<MessageMenu> { dialog, _ ->
+                        PopTip.show("已选择菜单")
+                        false
+                    })
+                    .setSelection(selectMenuIndex)
             }
             // 3. 无论点击哪个菜单项，关闭全局操作弹窗
             mGlobalAction.dismiss()

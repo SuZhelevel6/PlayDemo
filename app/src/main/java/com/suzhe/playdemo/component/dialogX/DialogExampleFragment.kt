@@ -156,10 +156,10 @@ class DialogExampleFragment : BaseViewModelFragment<FragmentDialogExampleBinding
                         selectMenuIndex = index
                     }
                 })
-                .setCancelButton("确定") { dialog, _ ->
-                    PopTip.show("已选择：${singleSelectMenuText[selectMenuIndex]}")
+                .setCancelButton("确认", OnMenuButtonClickListener<MessageMenu> { dialog, _ ->
+                    PopTip.show("已选择菜单")
                     false
-                }
+                })
                 .setSelection(selectMenuIndex)
         }
 
