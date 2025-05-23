@@ -24,6 +24,8 @@ import com.qmuiteam.qmui.widget.popup.QMUIPopups
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
 import com.suzhe.playdemo.databinding.ActivityMainBinding
+import com.suzhe.playdemo.utils.SkinManager
+import com.suzhe.playdemo.utils.SkinManager.Skin
 import com.suzhe.playdemo.databinding.ItemTabBinding
 
 class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
@@ -97,11 +99,19 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
             if (i == 0) {
                 // 定义皮肤选项
                 val items = arrayOf("蓝色（默认）", "黑色", "白色")
+                // 定义皮肤选项
+                val items = arrayOf("蓝色（默认）", "黑色", "白色")
                 // 构建 AlertDialog
                 val builder = android.app.AlertDialog.Builder(context)
                 builder.setTitle("选择皮肤")
                     .setItems(items) { dialog, which ->
-                        // 这里可以添加切换皮肤的逻辑
+                        val selectedSkin = when (which) {
+                            0 -> Skin.BLUE
+                            1 -> Skin.BLACK
+                            2 -> Skin.WHITE
+                            else -> Skin.BLUE // Default case
+                        }
+                        SkinManager.setSkin(this@MainActivity, selectedSkin) // this@MainActivity refers to the Activity context
                         dialog.dismiss()
                     }
                 val dialog = builder.create()

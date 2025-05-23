@@ -3,4 +3,41 @@
         <attr name="fullscreenBackgroundColor" format="color" />
         <attr name="fullscreenTextColor" format="color" />
     </declare-styleable>
+
+    <attr name="skin_colorPrimary" format="color" />
+    <attr name="skin_colorOnPrimary" format="color" />
+    <attr name="skin_colorPrimaryContainer" format="color" />
+    <attr name="skin_colorOnPrimaryContainer" format="color" />
+    <attr name="skin_colorSecondary" format="color" />
+    <attr name="skin_colorOnSecondary" format="color" />
+    <attr name="skin_colorSecondaryContainer" format="color" />
+    <attr name="skin_colorOnSecondaryContainer" format="color" />
+    <attr name="skin_colorTertiary" format="color" />
+    <attr name="skin_colorOnTertiary" format="color" />
+    <attr name="skin_colorTertiaryContainer" format="color" />
+    <attr name="skin_colorOnTertiaryContainer" format="color" />
+    <attr name="skin_colorError" format="color" />
+    <attr name="skin_colorOnError" format="color" />
+    <attr name="skin_colorErrorContainer" format="color" />
+    <attr name="skin_colorOnErrorContainer" format="color" />
+    <attr name="skin_colorBackground" format="color" />
+    <attr name="skin_colorOnBackground" format="color" />
+    <attr name="skin_colorSurface" format="color" />
+    <attr name="skin_colorOnSurface" format="color" />
+    <attr name="skin_colorSurfaceVariant" format="color" />
+    <attr name="skin_colorOnSurfaceVariant" format="color" />
+    <attr name="skin_colorOutline" format="color" />
+    <attr name="skin_colorSurfaceInverse" format="color" />
+    <attr name="skin_colorOnSurfaceInverse" format="color" />
+    <attr name="skin_colorPrimaryInverse" format="color" />
+
+    <!-- Specific component colors -->
+    <attr name="skin_windowBackground" format="color" />
+    <attr name="skin_toolbarBackground" format="color" />
+    <attr name="skin_tabBackground" format="color" />
+    <attr name="skin_bottomNavBackground" format="color" />
+    <attr name="skin_buttonColor" format="color" />
+    <attr name="skin_buttonTextColor" format="color" />
+    <attr name="skin_textColorPrimary" format="color" />
+    <attr name="skin_textColorSecondary" format="color" />
 </resources>

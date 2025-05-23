@@ -7,4 +7,139 @@
         <item name="fullscreenBackgroundColor">@color/light_blue_600</item>
         <item name="fullscreenTextColor">@color/light_blue_A200</item>
     </style>
+
+    <style name="AppTheme.Blue" parent="AppTheme">
+        <!-- Define Material 3 color attributes (examples, actual values may vary based on desired blue theme) -->
+        <item name="colorPrimary">@color/primary_100</item> <!-- Example Blue -->
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/light_blue_A200</item>
+        <item name="colorOnPrimaryContainer">@color/black_90</item>
+        <item name="colorSecondary">@color/primary_variant_100</item> <!-- Example Teal/Accent -->
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorTertiary">@color/button_primary</item> <!-- Example Purple/Accent -->
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="android:colorBackground">@color/grey_20</item> <!-- Light background -->
+        <item name="colorOnBackground">@color/black_90</item>
+        <item name="colorSurface">@color/white</item>
+        <item name="colorOnSurface">@color/black_90</item>
+        <item name="colorError">@color/alert_error</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- Define our custom skin attributes -->
+        <item name="skin_colorPrimary">@color/primary_100</item>
+        <item name="skin_colorOnPrimary">@color/white</item>
+        <item name="skin_colorPrimaryContainer">@color/light_blue_A200</item>
+        <item name="skin_colorOnPrimaryContainer">@color/black_90</item>
+        <item name="skin_colorSecondary">@color/primary_variant_100</item>
+        <item name="skin_colorOnSecondary">@color/white</item>
+        <item name="skin_colorTertiary">@color/button_primary</item>
+        <item name="skin_colorOnTertiary">@color/white</item>
+        <item name="skin_colorError">@color/alert_error</item>
+        <item name="skin_colorOnError">@color/white</item>
+        <item name="skin_colorBackground">@color/grey_20</item>
+        <item name="skin_colorOnBackground">@color/black_90</item>
+        <item name="skin_colorSurface">@color/white</item>
+        <item name="skin_colorOnSurface">@color/black_90</item>
+        <item name="skin_colorSurfaceVariant">@color/grey_60</item>
+        <item name="skin_colorOnSurfaceVariant">@color/black_90</item>
+        <item name="skin_colorOutline">@color/grey_80</item>
+        <item name="skin_windowBackground">@color/grey_20</item>
+        <item name="skin_toolbarBackground">?attr/colorPrimary</item> <!-- Or a specific blue -->
+        <item name="skin_tabBackground">?attr/colorPrimary</item> <!-- Or a specific blue -->
+        <item name="skin_bottomNavBackground">?attr/colorSurface</item> <!-- Or a specific light color -->
+        <item name="skin_buttonColor">?attr/colorPrimary</item>
+        <item name="skin_buttonTextColor">?attr/colorOnPrimary</item>
+        <item name="skin_textColorPrimary">@color/black_90</item>
+        <item name="skin_textColorSecondary">@color/black_20</item>
+    </style>
+
+    <style name="AppTheme.Black" parent="AppTheme">
+        <!-- Define Material 3 color attributes for Black Theme -->
+        <item name="colorPrimary">@color/primary_100</item> <!-- A blue accent on black can look good -->
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/black_60</item>
+        <item name="colorOnPrimaryContainer">@color/light_blue_A200</item>
+        <item name="colorSecondary">@color/light_blue_A200</item>
+        <item name="colorOnSecondary">@color/black_90</item>
+        <item name="colorTertiary">@color/light_blue_A400</item>
+        <item name="colorOnTertiary">@color/black_90</item>
+        <item name="android:colorBackground">@color/black_100</item>
+        <item name="colorOnBackground">@color/grey_30</item>
+        <item name="colorSurface">@color/black_80</item>
+        <item name="colorOnSurface">@color/grey_30</item>
+        <item name="colorError">@color/alert_error</item>
+        <item name="colorOnError">@color/black_90</item>
+
+        <!-- Define our custom skin attributes -->
+        <item name="skin_colorPrimary">@color/primary_100</item>
+        <item name="skin_colorOnPrimary">@color/white</item>
+        <item name="skin_colorPrimaryContainer">@color/black_60</item>
+        <item name="skin_colorOnPrimaryContainer">@color/light_blue_A200</item>
+        <item name="skin_colorSecondary">@color/light_blue_A200</item>
+        <item name="skin_colorOnSecondary">@color/black_90</item>
+        <item name="skin_colorTertiary">@color/light_blue_A400</item>
+        <item name="skin_colorOnTertiary">@color/black_90</item>
+        <item name="skin_colorError">@color/alert_error</item>
+        <item name="skin_colorOnError">@color/black_90</item>
+        <item name="skin_colorBackground">@color/black_100</item>
+        <item name="skin_colorOnBackground">@color/grey_30</item>
+        <item name="skin_colorSurface">@color/black_80</item>
+        <item name="skin_colorOnSurface">@color/grey_30</item>
+        <item name="skin_colorSurfaceVariant">@color/black_60</item>
+        <item name="skin_colorOnSurfaceVariant">@color/grey_40</item>
+        <item name="skin_colorOutline">@color/black_40</item>
+        <item name="skin_windowBackground">@color/black_100</item>
+        <item name="skin_toolbarBackground">@color/black_70</item>
+        <item name="skin_tabBackground">@color/black_70</item>
+        <item name="skin_bottomNavBackground">@color/black_80</item>
+        <item name="skin_buttonColor">?attr/colorPrimary</item>
+        <item name="skin_buttonTextColor">?attr/colorOnPrimary</item>
+        <item name="skin_textColorPrimary">@color/white</item>
+        <item name="skin_textColorSecondary">@color/grey_60</item>
+    </style>
+
+    <style name="AppTheme.White" parent="AppTheme">
+        <!-- Define Material 3 color attributes for White Theme -->
+        <item name="colorPrimary">@color/primary_100</item> <!-- Blue accent on white -->
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="colorPrimaryContainer">@color/light_blue_A200</item>
+        <item name="colorOnPrimaryContainer">@color/black_90</item>
+        <item name="colorSecondary">@color/primary_variant_100</item>
+        <item name="colorOnSecondary">@color/white</item>
+        <item name="colorTertiary">@color/button_primary</item>
+        <item name="colorOnTertiary">@color/white</item>
+        <item name="android:colorBackground">@color/white</item>
+        <item name="colorOnBackground">@color/black_90</item>
+        <item name="colorSurface">@color/grey_10</item> <!-- Slightly off-white for surfaces -->
+        <item name="colorOnSurface">@color/black_90</item>
+        <item name="colorError">@color/alert_error</item>
+        <item name="colorOnError">@color/white</item>
+
+        <!-- Define our custom skin attributes -->
+        <item name="skin_colorPrimary">@color/primary_100</item>
+        <item name="skin_colorOnPrimary">@color/white</item>
+        <item name="skin_colorPrimaryContainer">@color/light_blue_A200</item>
+        <item name="skin_colorOnPrimaryContainer">@color/black_90</item>
+        <item name="skin_colorSecondary">@color/primary_variant_100</item>
+        <item name="skin_colorOnSecondary">@color/white</item>
+        <item name="skin_colorTertiary">@color/button_primary</item>
+        <item name="skin_colorOnTertiary">@color/white</item>
+        <item name="skin_colorError">@color/alert_error</item>
+        <item name="skin_colorOnError">@color/white</item>
+        <item name="skin_colorBackground">@color/white</item>
+        <item name="skin_colorOnBackground">@color/black_90</item>
+        <item name="skin_colorSurface">@color/grey_10</item>
+        <item name="skin_colorOnSurface">@color/black_90</item>
+        <item name="skin_colorSurfaceVariant">@color/grey_30</item>
+        <item name="skin_colorOnSurfaceVariant">@color/black_90</item>
+        <item name="skin_colorOutline">@color/grey_70</item>
+        <item name="skin_windowBackground">@color/white</item>
+        <item name="skin_toolbarBackground">?attr/colorPrimary</item>
+        <item name="skin_tabBackground">?attr/colorPrimary</item>
+        <item name="skin_bottomNavBackground">?attr/colorSurface</item>
+        <item name="skin_buttonColor">?attr/colorPrimary</item>
+        <item name="skin_buttonTextColor">?attr/colorOnPrimary</item>
+        <item name="skin_textColorPrimary">@color/black_90</item>
+        <item name="skin_textColorSecondary">@color/black_40</item>
+    </style>
 </resources>
