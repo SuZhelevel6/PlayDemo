@@ -128,4 +128,6 @@ dependencies {
     //webview进度条
     //https://github.com/youlookwhat/WebProgress
     implementation("com.github.youlookwhat:WebProgress:1.2.0")
+
+    debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
 }

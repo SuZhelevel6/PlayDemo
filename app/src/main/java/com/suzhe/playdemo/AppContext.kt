@@ -4,6 +4,7 @@ import android.app.Application
 import android.content.ContentValues
 import android.content.Context
 import android.provider.MediaStore
+import android.util.Log
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.color.DynamicColors
@@ -32,6 +33,8 @@ class AppContext : Application() {
      */
     override fun attachBaseContext(base: Context?) {
         super.attachBaseContext(base)
+        // 记录启动开始时间
+        LaunchTimeTracker.recordStartTime()
         XCrash.init(this)// 初始化 XCrash 进行崩溃监控
     }
 
@@ -98,6 +101,54 @@ class AppContext : Application() {
          * 这里是为了以后能方便的调用 PlayDemoApplication 里面的一些方法，如 initOCR() 等
          */
         lateinit var instance: AppContext
+    }
+
+    object LaunchTimeTracker {
+        private var startTime: Long = 0L
+        private var endTime: Long = 0L
+        private var isStarted = false
+        private var isEnded = false
+
+        /**
+         * 在 Application.attachBaseContext() 中调用
+         */
+        fun recordStartTime() {
+            if (isStarted) return
+            startTime = System.currentTimeMillis()
+            isStarted = true
+        }
+
+        /**
+         * 在用户界面完全可操作时调用
+         */
+        fun recordEndTime() {
+            if (isEnded || !isStarted) return
+            endTime = System.currentTimeMillis()
+            isEnded = true
+        }
+
+        /**
+         * 获取启动耗时（毫秒）
+         */
+        fun getLaunchDuration(): Long {
+            return if (isStarted && isEnded) {
+                endTime - startTime
+            } else {
+                -1L
+            }
+        }
+
+        /**
+         * 打印启动耗时日志
+         */
+        fun printLaunchTime() {
+            val duration = getLaunchDuration()
+            if (duration >= 0) {
+                Log.d("LaunchTime", "App launch took: $duration ms")
+            } else {
+                Log.e("LaunchTime", "Launch time recording incomplete")
+            }
+        }
     }
 
 }
