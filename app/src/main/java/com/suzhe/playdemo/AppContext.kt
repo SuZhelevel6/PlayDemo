@@ -1,14 +1,17 @@
 package com.suzhe.playdemo
 
+import android.app.Activity
 import android.app.Application
 import android.content.ContentValues
 import android.content.Context
+import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.color.DynamicColors
 import com.kongzue.dialogx.DialogX
+import com.suzhe.playdemo.component.splash.SplashActivity
 import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -41,14 +44,83 @@ class AppContext : Application() {
     override fun onCreate() {
         super.onCreate()
         instance = this
+
+        // 主线程必要初始化
+        initCoreComponents()
+
+        // 延迟非关键初始化
+        CoroutineScope(Dispatchers.Default).launch {
+            initNonCriticalComponents()
+        }
+
+        // 延迟到首帧绘制后
+        registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
+            override fun onActivityPostCreated(activity: Activity, savedInstanceState: Bundle?) {
+                if (activity is SplashActivity) {
+                    CoroutineScope(Dispatchers.IO).launch {
+                        initAfterFirstFrame()
+                    }
+                    unregisterActivityLifecycleCallbacks(this)
+                }
+            }
+
+            override fun onActivityCreated(p0: Activity, p1: Bundle?) {
+
+            }
+
+            override fun onActivityStarted(p0: Activity) {
+
+            }
+
+            override fun onActivityResumed(p0: Activity) {
+
+            }
+
+            override fun onActivityPaused(p0: Activity) {
+
+            }
+
+            override fun onActivityStopped(p0: Activity) {
+
+            }
+
+            override fun onActivitySaveInstanceState(
+                p0: Activity,
+                p1: Bundle
+            ) {
+
+            }
+
+            override fun onActivityDestroyed(p0: Activity) {
+
+            }
+        })
+
+    }
+
+    private fun initCoreComponents() {
+        // 核心组件初始化（必须立即执行的）
+
         // 初始化 LogUtils
         LogUtils.getConfig().setGlobalTag(AppUtils.getAppPackageName())
+
         // 初始化 MMKV 键值对存储框架
         initMMKV()
-        // 初始化应用崩溃日志
-        processCrashLogs()
+
         // 开启动态主题
         DynamicColors.applyToActivitiesIfAvailable(instance)
+    }
+
+    private fun initNonCriticalComponents() {
+        // 非关键组件初始化（如：分析统计、广告 SDK）
+
+        // 初始化应用崩溃日志
+        processCrashLogs()
+    }
+
+    private fun initAfterFirstFrame() {
+        // 首帧绘制后的初始化（如：后台服务）
+
         // 初始化DialogX框架
         DialogX.init(this)
     }
