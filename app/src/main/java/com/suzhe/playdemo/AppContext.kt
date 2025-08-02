@@ -2,6 +2,7 @@ package com.suzhe.playdemo
 
 import android.app.Activity
 import android.app.Application
+import android.app.Instrumentation
 import android.content.ContentValues
 import android.content.Context
 import android.os.Bundle
@@ -11,7 +12,8 @@ import com.blankj.utilcode.util.AppUtils
 import com.blankj.utilcode.util.LogUtils
 import com.google.android.material.color.DynamicColors
 import com.kongzue.dialogx.DialogX
-import com.suzhe.playdemo.component.splash.SplashActivity
+import com.suzhe.playdemo.component.main.MainActivity
+import com.suzhe.playdemo.proxy.ProxyInstrumentation
 import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -20,6 +22,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import xcrash.TombstoneManager
 import xcrash.XCrash
+
 
 /**
  * 全局Application
@@ -39,6 +42,7 @@ class AppContext : Application() {
         // 记录启动开始时间
         LaunchTimeTracker.recordStartTime()
         XCrash.init(this)// 初始化 XCrash 进行崩溃监控
+        hookInstrumentation()
     }
 
     override fun onCreate() {
@@ -56,7 +60,7 @@ class AppContext : Application() {
         // 延迟到首帧绘制后
         registerActivityLifecycleCallbacks(object : ActivityLifecycleCallbacks {
             override fun onActivityPostCreated(activity: Activity, savedInstanceState: Bundle?) {
-                if (activity is SplashActivity) {
+                if (activity is MainActivity) {
                     CoroutineScope(Dispatchers.IO).launch {
                         initAfterFirstFrame()
                     }
@@ -96,6 +100,27 @@ class AppContext : Application() {
             }
         })
 
+    }
+
+
+    private fun hookInstrumentation() {
+        try {
+            // 获取 ActivityThread 实例
+            val activityThreadClass = Class.forName("android.app.ActivityThread")
+            val currentActivityThreadMethod = activityThreadClass.getMethod("currentActivityThread")
+            val activityThread = currentActivityThreadMethod.invoke(null)
+
+            // 获取原始 Instrumentation
+            val instrumentationField = activityThreadClass.getDeclaredField("mInstrumentation")
+            instrumentationField.isAccessible = true
+            val originalInstrumentation =
+                instrumentationField.get(activityThread) as Instrumentation
+
+            // 替换为代理 Instrumentation
+            instrumentationField.set(activityThread, ProxyInstrumentation(originalInstrumentation))
+        } catch (e: Exception) {
+            LogUtils.d("Failed to hook Instrumentation", e)
+        }
     }
 
     private fun initCoreComponents() {

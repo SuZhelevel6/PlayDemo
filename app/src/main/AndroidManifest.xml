@@ -55,19 +55,20 @@
             android:exported="false"
             android:label="组件库" />
         <activity
-            android:name=".component.splash.SplashActivity"
+            android:name=".component.main.MainActivity"
+            android:launchMode="singleTop"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".component.main.MainActivity"
+
+        <!-- 添加别名，使SplashActivity指向MainActivity -->
+        <activity-alias
+            android:name=".component.splash.SplashActivity"
             android:exported="true"
-            android:label="@string/app_name"
-            android:theme="@style/AppTheme" />
+            android:targetActivity=".component.main.MainActivity" />
     </application>
 
 </manifest>

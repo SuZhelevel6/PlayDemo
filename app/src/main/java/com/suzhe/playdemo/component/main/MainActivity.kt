@@ -1,8 +1,12 @@
 package com.suzhe.playdemo.component.main
 
+import android.Manifest
 import android.content.Context
 import android.os.Bundle
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
+import android.util.Log
 import android.view.Gravity
 import android.view.MotionEvent
 import android.view.View
@@ -12,25 +16,40 @@ import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import android.widget.FrameLayout
 import android.widget.ImageView
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.FragmentContainerView
 import androidx.viewpager2.widget.ViewPager2
 import com.angcyo.tablayout.DslTabLayout
 import com.angcyo.tablayout.delegate2.ViewPager2Delegate
+import com.blankj.utilcode.util.ToastUtils
 import com.kongzue.dialogx.dialogs.MessageMenu
 import com.kongzue.dialogx.dialogs.PopTip
 import com.kongzue.dialogx.interfaces.OnMenuButtonClickListener
 import com.kongzue.dialogx.interfaces.OnMenuItemSelectListener
 import com.qmuiteam.qmui.util.QMUIDisplayHelper
+import com.qmuiteam.qmui.util.QMUIStatusBarHelper
 import com.qmuiteam.qmui.util.QMUIViewOffsetHelper
 import com.qmuiteam.qmui.widget.QMUIRadiusImageView2
 import com.qmuiteam.qmui.widget.popup.QMUIPopup
 import com.qmuiteam.qmui.widget.popup.QMUIPopups
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.base.activity.BaseViewModelActivity
+import com.suzhe.playdemo.component.splash.TermServiceDialogFragment
 import com.suzhe.playdemo.databinding.ActivityMainBinding
+import com.suzhe.playdemo.databinding.ActivitySplashBinding
 import com.suzhe.playdemo.databinding.ItemTabBinding
+import com.suzhe.playdemo.utils.PreferenceUtil
+import com.suzhe.playdemo.utils.SuperDarkUtil
+import java.util.Calendar
+import java.util.concurrent.ExecutorService
+import java.util.concurrent.Executors
 
 class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
+
+    // 新增：Splash相关变量
+    private lateinit var splashBinding: ActivitySplashBinding
+    private val splashExecutor: ExecutorService = Executors.newFixedThreadPool(2)
+    private val mainHandler = Handler(Looper.getMainLooper())
 
     private var context = this@MainActivity
     private lateinit var mGlobalAction: QMUIPopup
@@ -44,6 +63,7 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
             "Category",
             "Me"
         )
+
     private val tabIcons = intArrayOf(
         R.drawable.selector_tab_discovery,
         R.drawable.selector_tab_library,
@@ -51,12 +71,135 @@ class MainActivity : BaseViewModelActivity<ActivityMainBinding>() {
         R.drawable.selector_tab_me
     )
 
+    private val requiredPermissions = arrayOf(
+        Manifest.permission.ACCESS_COARSE_LOCATION,
+        Manifest.permission.ACCESS_FINE_LOCATION,
+        Manifest.permission.READ_PHONE_STATE,
+        Manifest.permission.READ_MEDIA_AUDIO,
+        Manifest.permission.READ_MEDIA_IMAGES,
+        Manifest.permission.READ_MEDIA_VIDEO
+    )
+
+    private val requestMultiplePermissionsLauncher = registerForActivityResult(
+        ActivityResultContracts.RequestMultiplePermissions()
+    ) { permissions ->
+        // 处理权限请求的结果
+        var allGranted = true
+        permissions.entries.forEach { entry ->
+            Log.d(
+                "Permission",
+                "Permission ${entry.key} is ${if (entry.value) "granted" else "denied"}"
+            )
+            if (!entry.value) {
+                allGranted = false
+            }
+        }
+
+        if (allGranted) {
+            // 所有权限都被授予
+            executeSplashTasks()
+        } else {
+            // 至少有一个权限被拒绝
+            ToastUtils.make().show("Permissions not granted by the user.")
+            finish()
+        }
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        initSplashView()
         binding.root.addView(SkinFlotButton(context))
     }
+
+    private fun initSplashView() {
+        // 先隐藏主界面
+        binding.mainContainer.visibility = View.GONE
+
+        // 初始化Splash布局
+        splashBinding = ActivitySplashBinding.inflate(layoutInflater)
+        val splashContainer = FrameLayout(this)
+        splashContainer.layoutParams = FrameLayout.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
+        splashContainer.addView(splashBinding.root)
+        setContentView(splashContainer)
+
+        // 设置状态栏
+        QMUIStatusBarHelper.translucent(this)
+        if (SuperDarkUtil.isDark(this)) {
+            QMUIStatusBarHelper.setStatusBarDarkMode(this)
+        } else {
+            QMUIStatusBarHelper.setStatusBarLightMode(this)
+        }
+
+        // 设置版本年份
+        val currentYear = Calendar.getInstance().get(Calendar.YEAR)
+        splashBinding.copyright.text = getString(R.string.copyright, currentYear)
+
+        // 检查用户协议
+        if (PreferenceUtil.isAcceptTermsServiceAgreement()) {
+            requestPermission()
+        } else {
+            showTermsServiceAgreementDialog()
+        }
+    }
+
+    // 新增：执行Splash期间的并发任务
+    private fun executeSplashTasks() {
+        Log.d("Splash", "Executing splash tasks...")
+        // 任务1：模拟延迟
+        splashExecutor.submit {
+
+            // 任务2：异步预加载View或其他初始化操作
+            preloadViews()
+
+            // 回到主线程切换界面
+            mainHandler.post {
+                switchToMainContent()
+            }
+        }
+    }
+
+    // 新增：预加载视图等操作
+    private fun preloadViews() {
+        Log.d("Splash", "Preloading views...")
+        // 在这里执行View预加载或其他耗时操作
+        try {
+
+            // 可以添加更多预加载任务
+        } catch (e: Exception) {
+            Log.e("Splash", "Error preloading views", e)
+        }
+    }
+
+    // 新增：切换到主内容界面
+    private fun switchToMainContent() {
+        Log.d("Splash", "Switching to main content...")
+        // 显示主界面
+        setContentView(binding.root)
+        binding.mainContainer.visibility = View.VISIBLE
+    }
+
+    // 新增：权限请求
+    private fun requestPermission() {
+        requestMultiplePermissionsLauncher.launch(requiredPermissions)
+    }
+
+    // 新增：显示服务条款对话框
+    private fun showTermsServiceAgreementDialog() {
+        TermServiceDialogFragment.show(supportFragmentManager) {
+            PreferenceUtil.setAcceptTermsServiceAgreement()
+            requestPermission()
+        }
+    }
+
+    // 新增：销毁时关闭线程池
+    override fun onDestroy() {
+        super.onDestroy()
+        splashExecutor.shutdown()
+    }
+
 
     override fun initViews() {
         super.initViews()
