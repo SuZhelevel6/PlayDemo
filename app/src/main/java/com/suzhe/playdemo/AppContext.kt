@@ -14,6 +14,7 @@ import com.google.android.material.color.DynamicColors
 import com.kongzue.dialogx.DialogX
 import com.suzhe.playdemo.component.main.MainActivity
 import com.suzhe.playdemo.proxy.ProxyInstrumentation
+import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -134,6 +135,9 @@ class AppContext : Application() {
 
         // 开启动态主题
         DynamicColors.applyToActivitiesIfAvailable(instance)
+
+        // 初始化腾讯Bugly崩溃日志
+        CrashReport.initCrashReport(applicationContext, "056610e788", true)
     }
 
     private fun initNonCriticalComponents() {

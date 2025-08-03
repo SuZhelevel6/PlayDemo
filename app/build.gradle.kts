@@ -130,4 +130,6 @@ dependencies {
     implementation("com.github.youlookwhat:WebProgress:1.2.0")
 
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
+
+    implementation("com.tencent.bugly:crashreport:4.1.9.3")
 }
