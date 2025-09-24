@@ -29,7 +29,18 @@ android {
         renderscriptSupportModeEnabled = true
     }
 
+    signingConfigs {
+        getByName("debug") {
+            storeFile = file("/Users/zhangtao/Documents/Code/keystore/x5platform.keystore")
+            storePassword = "giec_stb_666"
+            keyAlias = "giec"
+            keyPassword = "giec_stb_666"
+        }
+    }
     buildTypes {
+        getByName("debug") {
+            signingConfig = signingConfigs.getByName("debug")
+        }
         release {
             isMinifyEnabled = false
             proguardFiles(
@@ -70,6 +81,7 @@ dependencies {
     implementation("androidx.databinding:viewbinding:8.9.0")
     implementation("androidx.activity:activity:1.8.0")
     implementation("androidx.compose.ui:ui-text-android:1.7.8")
+    implementation("com.google.ai.edge.litert:litert:2.0.2")
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
@@ -132,4 +144,6 @@ dependencies {
     debugImplementation("com.squareup.leakcanary:leakcanary-android:2.14")
 
     implementation("com.tencent.bugly:crashreport:4.1.9.3")
+
+    implementation(files("libs/ShellCmd222.jar"))
 }
