@@ -14,7 +14,6 @@ import com.google.android.material.color.DynamicColors
 import com.kongzue.dialogx.DialogX
 import com.suzhe.playdemo.component.main.MainActivity
 import com.suzhe.playdemo.proxy.ProxyInstrumentation
-import com.tencent.bugly.crashreport.CrashReport
 import com.tencent.mmkv.MMKV
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -22,7 +21,6 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import xcrash.TombstoneManager
-import xcrash.XCrash
 
 
 /**
@@ -42,7 +40,7 @@ class AppContext : Application() {
         super.attachBaseContext(base)
         // 记录启动开始时间
         LaunchTimeTracker.recordStartTime()
-        XCrash.init(this)// 初始化 XCrash 进行崩溃监控
+//        XCrash.init(this)// 初始化 XCrash 进行崩溃监控
         hookInstrumentation()
     }
 
@@ -137,7 +135,7 @@ class AppContext : Application() {
         DynamicColors.applyToActivitiesIfAvailable(instance)
 
         // 初始化腾讯Bugly崩溃日志
-        CrashReport.initCrashReport(applicationContext, "056610e788", true)
+//        CrashReport.initCrashReport(applicationContext, "056610e788", true)
     }
 
     private fun initNonCriticalComponents() {
