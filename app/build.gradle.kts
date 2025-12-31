@@ -1,6 +1,15 @@
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
+    id("com.suzhe.buildinfo")
+}
+
+// BuildInfo 插件配置
+buildInfo {
+    className = "BuildInfo"
+    includeGitInfo = true
+    includeBuildTime = true
+    includeBuildUser = true
 }
 
 android {
