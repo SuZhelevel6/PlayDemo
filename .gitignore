@@ -7,6 +7,10 @@
 /.idea/workspace.xml
 /.idea/navEditor.xml
 /.idea/assetWizardSettings.xml
+/.idea/deviceManager.xml
+/.idea/copilot*.xml
+/.idea/CopilotChatHistory.xml
+app/.idea/
 .DS_Store
 /build
 /captures

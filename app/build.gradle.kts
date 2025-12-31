@@ -146,4 +146,6 @@ dependencies {
     implementation("com.tencent.bugly:crashreport:4.1.9.3")
 
     implementation(files("libs/ShellCmd222.jar"))
+
+    implementation("com.qmdeve.liquidglass:core:1.0.0")
 }

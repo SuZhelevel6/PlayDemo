@@ -7,15 +7,29 @@
     android:theme="@style/ThemeOverlay.PlayDemo.FullscreenContainer"
     tools:context=".component.test.TestFragment">
 
-    <TextView
-        android:id="@+id/fullscreen_content"
+    <FrameLayout
+        android:id="@+id/content_container"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:gravity="center"
-        android:keepScreenOn="true"
-        android:text="Empty Fragment"
-        android:textColor="?attr/fullscreenTextColor"
-        android:textSize="50sp"
-        android:textStyle="bold" />
+        android:layout_height="match_parent">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <ImageView
+                android:id="@+id/images"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:scaleType="centerCrop"
+                android:src="@drawable/bg_sky" />
+        </RelativeLayout>
+    </FrameLayout>
+
+    <!-- 液态玻璃视图 -->
+    <com.qmdeve.liquidglass.widget.LiquidGlassView
+        android:id="@+id/liquidGlassView"
+        android:layout_width="400dp"
+        android:layout_height="400dp"
+        android:layout_centerInParent="true" />
 
 </FrameLayout>
