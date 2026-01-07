@@ -83,6 +83,9 @@ dependencies {
     // 项目模块
     implementation(project(":lib-base"))
     implementation(project(":lib-common"))
+    implementation(project(":lib-storage"))
+    implementation(project(":lib-crash"))
+    implementation(project(":lib-log"))
 
     implementation("androidx.core:core-ktx:1.13.0") //AndroidX Core 库
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2") //Android 生命周期相关的 Kotlin 扩展
@@ -102,23 +105,15 @@ dependencies {
     //https://qmuiteam.com/android/get-started
     implementation("com.qmuiteam:qmui:2.1.0")
 
-    //腾讯开源的高性能keyValue存储，用来替代系统的SharedPreferences
-    //https://github.com/Tencent/MMKV
-    implementation("com.tencent:mmkv-static:1.2.16")
-
-    //爱奇艺开源的在android平台上面捕获异常的开源库
-    //https://github.com/iqiyi/xCrash
-    implementation("com.iqiyi.xcrash:xcrash-android-lib:3.1.0")
+    // MMKV - 由 lib-storage 模块提供
+    // XCrash - 由 lib-crash 模块提供
 
     //apache common lang3工具包
     //提供了StringUtils等这样的类
     //http://commons.apache.org/proper/commons-lang/
     implementation("org.apache.commons:commons-lang3:3.8")
 
-    //android常用工具类
-    //https://github.com/Blankj/AndroidUtilCode
-    //https://github.com/Blankj/AndroidUtilCode/blob/master/lib/utilcode/README-CN.md
-    implementation("com.blankj:utilcodex:1.31.1")
+    // AndroidUtilCode - 由 lib-log 模块提供
 
     // Dialog工具DialogX
     // https://github.com/kongzue/DialogX

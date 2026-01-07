@@ -1,0 +1,1 @@
+# lib-crash proguard rules

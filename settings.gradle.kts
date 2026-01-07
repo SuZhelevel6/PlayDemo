@@ -18,4 +18,7 @@ rootProject.name = "PlayDemo"
 include(":app")
 include(":lib-base")
 include(":lib-common")
+include(":lib-storage")
+include(":lib-crash")
+include(":lib-log")
  

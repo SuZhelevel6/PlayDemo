@@ -14,6 +14,9 @@ app/.idea/
 buildSrc/build/
 lib-base/build/
 lib-common/build/
+lib-storage/build/
+lib-crash/build/
+lib-log/build/
 .DS_Store
 /build
 /captures
