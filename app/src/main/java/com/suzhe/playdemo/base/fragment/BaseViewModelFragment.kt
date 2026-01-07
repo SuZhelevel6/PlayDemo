@@ -5,8 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.suzhe.playdemo.utils.ReflectUtil
+import com.suzhe.lib.base.util.ReflectUtil
 
+/**
+ * 带 ViewBinding 的 Fragment 基类
+ */
 abstract class BaseViewModelFragment<VB : ViewBinding> : BaseLogicFragment() {
     var _binding: VB? = null
     protected val binding get() = _binding!!

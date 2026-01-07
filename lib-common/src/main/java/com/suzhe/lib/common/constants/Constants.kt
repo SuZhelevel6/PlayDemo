@@ -1,7 +1,7 @@
-package com.suzhe.playdemo.utils
+package com.suzhe.lib.common.constants
 
 /**
- * 常量类
+ * 通用常量类
  */
 object Constants {
     const val ID = "id"

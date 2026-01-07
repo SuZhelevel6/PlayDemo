@@ -5,7 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.viewbinding.ViewBinding
-import com.suzhe.playdemo.utils.ReflectUtil
+import com.suzhe.lib.base.util.ReflectUtil
 
 
 abstract class BaseViewModelDialogFragment<VB : ViewBinding> : BaseCommonDialogFragment() {

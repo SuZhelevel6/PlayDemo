@@ -1,0 +1,1 @@
+# lib-common proguard rules

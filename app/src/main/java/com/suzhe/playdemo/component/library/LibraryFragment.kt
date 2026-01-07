@@ -5,7 +5,7 @@ import com.blankj.utilcode.util.ActivityUtils
 import com.suzhe.playdemo.base.fragment.BaseViewModelFragment
 import com.suzhe.playdemo.component.recyclerView.RecyclerViewDemoActivity
 import com.suzhe.playdemo.databinding.FragmentLibraryBinding
-import com.suzhe.playdemo.utils.Constants.FRAGMENT_ID
+import com.suzhe.lib.common.constants.Constants.FRAGMENT_ID
 
 class LibraryFragment : BaseViewModelFragment<FragmentLibraryBinding>() {
     override fun initDatum() {

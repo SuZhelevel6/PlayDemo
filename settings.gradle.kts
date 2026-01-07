@@ -16,4 +16,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "PlayDemo"
 include(":app")
+include(":lib-base")
+include(":lib-common")
  

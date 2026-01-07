@@ -73,7 +73,7 @@
             android:src="@drawable/img_dialogx_demo_recommend" />
     </LinearLayout>
 
-    <com.suzhe.playdemo.view.NestedScrollableHost
+    <com.suzhe.lib.common.view.NestedScrollableHost
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_weight="1">
@@ -82,5 +82,5 @@
             android:id="@+id/pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-    </com.suzhe.playdemo.view.NestedScrollableHost>
+    </com.suzhe.lib.common.view.NestedScrollableHost>
 </LinearLayout>

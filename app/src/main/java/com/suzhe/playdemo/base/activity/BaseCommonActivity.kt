@@ -2,7 +2,7 @@ package com.suzhe.playdemo.base.activity
 
 import android.content.Intent
 import android.os.Build
-import com.suzhe.playdemo.utils.Constants
+import com.suzhe.lib.common.constants.Constants
 
 /**
  * 通用界面逻辑

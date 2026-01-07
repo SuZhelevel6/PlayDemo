@@ -6,7 +6,7 @@ import com.suzhe.playdemo.base.activity.BaseViewModelActivity
 import com.suzhe.playdemo.component.brvah.BRVAHExampleFragment
 import com.suzhe.playdemo.component.dialogX.DialogExampleFragment
 import com.suzhe.playdemo.databinding.ActivityLibraryContentBinding
-import com.suzhe.playdemo.utils.Constants.FRAGMENT_ID
+import com.suzhe.lib.common.constants.Constants.FRAGMENT_ID
 
 class LibraryContentActivity : BaseTitleActivity<ActivityLibraryContentBinding>() {
 

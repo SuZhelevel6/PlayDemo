@@ -3,7 +3,7 @@ package com.suzhe.playdemo.base.fragment
 import android.content.Intent
 import android.view.View
 import androidx.annotation.IdRes
-import com.suzhe.playdemo.utils.Constants
+import com.suzhe.lib.common.constants.Constants
 
 
 abstract class BaseCommonFragment : BaseFragment() {

@@ -12,6 +12,8 @@
 /.idea/CopilotChatHistory.xml
 app/.idea/
 buildSrc/build/
+lib-base/build/
+lib-common/build/
 .DS_Store
 /build
 /captures

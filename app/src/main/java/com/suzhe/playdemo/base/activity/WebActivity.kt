@@ -15,7 +15,7 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.suzhe.playdemo.R
 import com.suzhe.playdemo.databinding.ActivityWebBinding
-import com.suzhe.playdemo.utils.Constants
+import com.suzhe.lib.common.constants.Constants
 
 /**
  * 通用WebView界面
