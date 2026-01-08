@@ -41,7 +41,7 @@ class LibraryFragment : BaseViewModelFragment<FragmentLibraryBinding>() {
         }
     }
 
-    override fun pageId(): String? {
+    fun pageId(): String? {
         return "Library"
     }
 

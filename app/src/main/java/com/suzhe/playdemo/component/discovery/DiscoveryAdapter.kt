@@ -12,7 +12,7 @@ class DiscoveryAdapter(fragmentActivity: FragmentActivity, private val datum: Ar
     }
 
     override fun createFragment(position: Int): Fragment {
-        return ArticleFragment(position.toString())
+        return ArticleFragment.newInstance(position.toString())
     }
 
 }

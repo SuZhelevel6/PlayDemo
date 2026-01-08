@@ -1,60 +1,10 @@
 package com.suzhe.playdemo.base.activity
 
-
-import android.view.MenuItem
-import androidx.appcompat.widget.Toolbar
 import androidx.viewbinding.ViewBinding
-import com.suzhe.playdemo.R
+import com.suzhe.lib.base.activity.BaseTitleActivity as LibBaseTitleActivity
 
 /**
- * 带有ToolBar的通用标题界面
+ * 带有 ToolBar 的通用标题界面
+ * 继承自 lib-base 的 BaseTitleActivity
  */
-open class BaseTitleActivity<VB : ViewBinding> : BaseViewModelActivity<VB>() {
-    lateinit var toolbar: Toolbar
-
-    override fun initViews() {
-        super.initViews()
-        toolbar = findViewById(R.id.toolbar)
-
-        //初始化Toolbar
-        setSupportActionBar(toolbar)
-
-        //是否显示返回按钮
-        if (isShowBackMenu()) {
-            showBackMenu()
-        }
-    }
-
-    /**
-     * 显示返回按钮
-     */
-    protected open fun showBackMenu() {
-        supportActionBar!!.setDisplayHomeAsUpEnabled(true)
-    }
-
-    /**
-     * 是否显示返回按钮
-     * @return
-     */
-    protected open fun isShowBackMenu(): Boolean {
-        return true
-    }
-
-    /**
-     * 菜单点击了回调
-     * @param item
-     * @return
-     */
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when (item.itemId) {
-            android.R.id.home ->
-                //Toolbar返回按钮点击
-                onBackPressedDispatcher.onBackPressed()
-        }
-        return super.onOptionsItemSelected(item)
-    }
-
-    fun setToolBarTitle(tile: String) {
-        title = tile
-    }
-}
+open class BaseTitleActivity<VB : ViewBinding> : LibBaseTitleActivity<VB>()

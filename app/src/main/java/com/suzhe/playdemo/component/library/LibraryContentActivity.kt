@@ -32,7 +32,7 @@ class LibraryContentActivity : BaseTitleActivity<ActivityLibraryContentBinding>(
             .commit()
     }
 
-    override fun pageId(): String? {
+    fun pageId(): String? {
         return "LibraryContent"
     }
 

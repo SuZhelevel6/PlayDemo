@@ -1,2 +1,25 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest />
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <application>
+        <activity
+            android:name=".animation.AnimationUseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".autoLoad.AutoLoadMoreRefreshUseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".drag.DragAndSwipeUseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".empty.EmptyViewUseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".group.GroupDemoUseActivity"
+            android:exported="false" />
+        <activity
+            android:name=".header.HeaderUseActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

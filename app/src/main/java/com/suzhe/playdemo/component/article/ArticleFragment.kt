@@ -5,6 +5,7 @@ import android.content.ActivityNotFoundException
 import android.content.Intent
 import android.net.Uri
 import android.net.http.SslError
+import android.os.Bundle
 import android.webkit.SslErrorHandler
 import android.webkit.WebView
 import android.webkit.WebViewClient
@@ -16,8 +17,26 @@ import com.suzhe.playdemo.databinding.FragmentArticleBinding
  * An example full-screen fragment that shows and hides the system UI (i.e.
  * status bar and navigation/system bar) with user interaction.
  */
-class ArticleFragment(private var content: String) :
-    BaseViewModelFragment<FragmentArticleBinding>() {
+class ArticleFragment : BaseViewModelFragment<FragmentArticleBinding>() {
+
+    private var content: String = ""
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        content = arguments?.getString(ARG_CONTENT) ?: ""
+    }
+
+    companion object {
+        private const val ARG_CONTENT = "arg_content"
+
+        fun newInstance(content: String): ArticleFragment {
+            return ArticleFragment().apply {
+                arguments = Bundle().apply {
+                    putString(ARG_CONTENT, content)
+                }
+            }
+        }
+    }
 
     @SuppressLint("SetJavaScriptEnabled")
     override fun initDatum() {

@@ -54,7 +54,7 @@ class DiscoveryFragment : BaseViewModelFragment<FragmentDiscoveryBinding>() {
 
     }
 
-    override fun pageId(): String? {
+    fun pageId(): String? {
         return "Discovery"
     }
 
