@@ -21,4 +21,6 @@ include(":lib-common")
 include(":lib-storage")
 include(":lib-crash")
 include(":lib-log")
+include(":feature-brvah")
+include(":feature-dialog")
  

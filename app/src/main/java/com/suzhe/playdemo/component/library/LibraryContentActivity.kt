@@ -2,9 +2,8 @@ package com.suzhe.playdemo.component.library
 
 import androidx.fragment.app.Fragment
 import com.suzhe.playdemo.base.activity.BaseTitleActivity
-import com.suzhe.playdemo.base.activity.BaseViewModelActivity
-import com.suzhe.playdemo.component.brvah.BRVAHExampleFragment
-import com.suzhe.playdemo.component.dialogX.DialogExampleFragment
+import com.suzhe.feature.brvah.BRVAHExampleFragment
+import com.suzhe.feature.dialog.DialogExampleFragment
 import com.suzhe.playdemo.databinding.ActivityLibraryContentBinding
 import com.suzhe.lib.common.constants.Constants.FRAGMENT_ID
 

@@ -86,6 +86,8 @@ dependencies {
     implementation(project(":lib-storage"))
     implementation(project(":lib-crash"))
     implementation(project(":lib-log"))
+    implementation(project(":feature-brvah"))
+    implementation(project(":feature-dialog"))
 
     implementation("androidx.core:core-ktx:1.13.0") //AndroidX Core 库
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.6.2") //Android 生命周期相关的 Kotlin 扩展
