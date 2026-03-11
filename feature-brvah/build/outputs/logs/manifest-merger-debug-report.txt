@@ -1,0 +1,54 @@
+-- Merging decision tree log ---
+manifest
+ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:2:1-25:12
+INJECTED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:2:1-25:12
+	package
+		INJECTED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml
+	xmlns:android
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:2:11-69
+application
+ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:4:5-23:19
+activity#com.suzhe.feature.brvah.animation.AnimationUseActivity
+ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:5:9-7:40
+	android:exported
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:7:13-37
+	android:name
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:6:13-59
+activity#com.suzhe.feature.brvah.autoLoad.AutoLoadMoreRefreshUseActivity
+ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:8:9-10:40
+	android:exported
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:10:13-37
+	android:name
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:9:13-68
+activity#com.suzhe.feature.brvah.drag.DragAndSwipeUseActivity
+ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:11:9-13:40
+	android:exported
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:13:13-37
+	android:name
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:12:13-57
+activity#com.suzhe.feature.brvah.empty.EmptyViewUseActivity
+ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:14:9-16:40
+	android:exported
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:16:13-37
+	android:name
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:15:13-55
+activity#com.suzhe.feature.brvah.group.GroupDemoUseActivity
+ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:17:9-19:40
+	android:exported
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:19:13-37
+	android:name
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:18:13-55
+activity#com.suzhe.feature.brvah.header.HeaderUseActivity
+ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:20:9-22:40
+	android:exported
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:22:13-37
+	android:name
+		ADDED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:21:13-53
+uses-sdk
+INJECTED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml reason: use-sdk injection requested
+INJECTED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml
+INJECTED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml
+	android:targetSdkVersion
+		INJECTED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml
+	android:minSdkVersion
+		INJECTED from /Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml

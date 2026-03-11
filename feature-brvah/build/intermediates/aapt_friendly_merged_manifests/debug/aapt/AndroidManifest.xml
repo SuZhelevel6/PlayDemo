@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.suzhe.feature.brvah" >
+
+    <uses-sdk android:minSdkVersion="33" />
+
+    <application>
+        <activity
+            android:name="com.suzhe.feature.brvah.animation.AnimationUseActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.suzhe.feature.brvah.autoLoad.AutoLoadMoreRefreshUseActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.suzhe.feature.brvah.drag.DragAndSwipeUseActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.suzhe.feature.brvah.empty.EmptyViewUseActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.suzhe.feature.brvah.group.GroupDemoUseActivity"
+            android:exported="false" />
+        <activity
+            android:name="com.suzhe.feature.brvah.header.HeaderUseActivity"
+            android:exported="false" />
+    </application>
+
+</manifest>

@@ -1,0 +1,47 @@
+1<?xml version="1.0" encoding="utf-8"?>
+2<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+3    package="com.suzhe.feature.brvah" >
+4
+5    <uses-sdk android:minSdkVersion="33" />
+6
+7    <application>
+7-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:4:5-23:19
+8        <activity
+8-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:5:9-7:40
+9            android:name="com.suzhe.feature.brvah.animation.AnimationUseActivity"
+9-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:6:13-59
+10            android:exported="false" />
+10-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:7:13-37
+11        <activity
+11-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:8:9-10:40
+12            android:name="com.suzhe.feature.brvah.autoLoad.AutoLoadMoreRefreshUseActivity"
+12-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:9:13-68
+13            android:exported="false" />
+13-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:10:13-37
+14        <activity
+14-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:11:9-13:40
+15            android:name="com.suzhe.feature.brvah.drag.DragAndSwipeUseActivity"
+15-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:12:13-57
+16            android:exported="false" />
+16-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:13:13-37
+17        <activity
+17-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:14:9-16:40
+18            android:name="com.suzhe.feature.brvah.empty.EmptyViewUseActivity"
+18-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:15:13-55
+19            android:exported="false" />
+19-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:16:13-37
+20        <activity
+20-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:17:9-19:40
+21            android:name="com.suzhe.feature.brvah.group.GroupDemoUseActivity"
+21-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:18:13-55
+22            android:exported="false" />
+22-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:19:13-37
+23        <activity
+23-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:20:9-22:40
+24            android:name="com.suzhe.feature.brvah.header.HeaderUseActivity"
+24-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:21:13-53
+25            android:exported="false" />
+25-->/Users/zhangtao/Documents/Code/github.com/SuZhelevel6/PlayDemo/feature-brvah/src/main/AndroidManifest.xml:22:13-37
+26    </application>
+27
+28</manifest>
